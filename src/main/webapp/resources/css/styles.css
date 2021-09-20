@@ -1,0 +1,434 @@
+/* Google Font Import Link */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  transition: all 0.4s ease;
+}
+nav.sticky{
+  padding: 15px 20px;
+  background: #ffffffe0;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+nav .nav-content{
+  height: 100%;
+/* max-width: 1500px; 정도 지정하고 margin: auto; 하면 중앙정렬*/
+  margin: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .logo{
+  padding-top: 15px;
+}
+
+.nav-content .nav-right{
+    display: flex;
+  }
+.nav-content .nav-links{
+  display: flex;
+}
+.nav-content .nav-links li{
+  position: relative;
+  list-style: none;
+  /* padding: 13px 30px; */
+  margin: 0 40px 0 0;
+}
+ .nav-links li a{
+  padding: 19px 30px;
+  text-decoration: none;
+  color: #0E2431;
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  /* transition: all 0.3s ease; */
+}
+ .nav-links li:hover{
+   color: #4070f4;
+   border-bottom: solid #4481eb;
+ }
+ .nav-links li a:hover{
+    color: #4070f4;
+  }
+
+.buttons {
+    text-align: center;
+    font-size: 18px;
+}
+
+.btn-hover {
+    width: 150px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    height: 62.75px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 20px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal2 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    width:420px;
+    height:574px;
+    padding: 32px 10px 10px;
+    border-radius: 20px;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid #888;                   
+}
+.loginlogo {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: rgb(206, 206, 206);
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
+    position: absolute;
+    top: 25px;
+    right: 40px;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sign-in-user-area {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0 10%;
+}
+
+legend {
+    display: none;
+}
+
+
+
+.form-textbox {
+    padding: 0;
+    width: 250px;
+    height: 48px;
+    position: relative;
+    margin: 13px;
+    border-radius: 15px;
+}
+
+.form-textbox-input {
+    margin: 0;
+    width: 300px;
+    height: 48px;
+    /* background-color: #f1f8ff; */
+    border: 1px solid rgba(183, 208, 255, 0.844);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: "Roboto","Noto Sans KR","Noto Sans JP","Noto Sans SC",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: #333;
+    outline: none;
+}
+
+.form-textbox-input:focus {
+  border: 1px solid rgb(107, 109, 255);
+  border-radius: 8px;
+}
+
+
+.form-textbox span{
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  float: right;
+  font-size: 20px;
+  color: #82c9ff;
+  cursor: pointer;
+}
+.form-textbox input:valid ~ span{
+  display: block;
+}
+.form-textbox span i.hide-btn::before{
+  content: "\f070";
+}
+
+
+.form-submit {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.signin-submit-button
+{
+    width: 300px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    /* height: 62.75px; */
+    height: 52.75px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 20px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.signin-submit-button:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+
+.signin-submit-button:focus {
+    outline: none;
+}
+
+.signin-submit-button.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+} 
+
+
+.sign-in-modal__more-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+
+.more-action__text {
+  background-color:transparent;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  font-size: 14px;
+  letter-spacing: -.3px;
+  color: #3f7cff;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.more-action__text:hover {
+  background-color:transparent;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  font-size: 14px;
+  letter-spacing: -.3px;
+  color: #3fb2ff;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.between {
+  color:#dfdfdf93;
+  margin: 0 15px;
+  font-weight: lighter;
+}
+
+/* .modal-sign-up {
+    margin-left: 16px;
+}
+
+.modal-sign-up:hover {
+  margin-left: 16px;
+} */
+
+.divider{
+    text-align: center;
+}
+
+.left-line , .right-line {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  width: 40%;
+  height: 1px;
+  background-color: #dde1e7;
+}
+
+.email-sign-up {
+  color:#aaa;
+  font-size: 14px;
+  margin-top: 30px;
+  text-align: center;
+  /* padding: 30px; */
+  /* padding-top: 30px; */
+  padding-bottom: 15px;
+}
+
+.divider2{
+  text-align: center;
+  margin-top: 70px;
+}
+
+.left-line2 , .right-line2 {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  width: 30%;
+  height: 1px;
+  background-color: #dde1e7;
+}
+
+.line-text {
+  padding: 0;
+  color: #b0b4bd;
+  margin: 0 16px;
+  font-family: "Montserrat","Noto Sans KR","Noto Sans JP","Noto Sans SC",sans-serif;
+  font-size: 14px;
+  letter-spacing: -.35px;
+  line-height: 18px;
+}
+
+.social__sign-in-buttons {
+  margin-top: 14px;
+  text-align: center;
+}
+
+
+.sign-in-user-area .transfer-complete {
+  display: none;
+  text-align: center;
+  font-size: x-small;
+  color:rgb(0, 181, 111);
+  margin-top: 40px;
+}
+
+
+.home{
+  height: 100vh;
+  width: 100%;
+  background: url("../images/f.png") no-repeat;
+  /* background-size: cover; */
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.home2{
+    height: 100vh;
+    width: 100%;
+    background: url("../images/wickedbackground.png") no-repeat;
+    /* background-size: cover; */
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Ubuntu', sans-serif;
+  }
+
+
+h2{
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #4070f4;
+}
+.footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 20px 80px;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+}
+h3{
+  font-size: 0.9em;
+  padding-bottom: 3px;
+  border-bottom: solid #ffdc85;
+}
+
+
+
+
+/* �뿬湲곗꽌遺��꽣 signup CSS */

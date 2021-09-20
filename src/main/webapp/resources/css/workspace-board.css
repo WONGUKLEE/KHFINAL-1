@@ -1,0 +1,496 @@
+*{
+    margin: 0px;
+    list-style: none;
+    padding: 0px;
+    text-decoration: none;
+    box-sizing: border-box;
+    /* font-family: ; */
+}
+
+.navbar-fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    display: flex;
+    border-bottom: solid 1px #dfdfdfaf;
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.navbar-fixed-top .workspace-title {
+    /* width: 64%; */
+    width: calc(100% - 734px);
+    display: flex;
+}
+
+.icon-home{
+    height: 100%;
+    line-height: 45px;
+    vertical-align: top;
+}
+
+.alogo {
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding-right: 11px;
+    border-right: solid 1px #dfdfdfaf;
+}
+
+#homelogo {
+    width: 60%;
+    vertical-align: middle;
+}
+
+#teamimage{
+    width: 90%;
+    vertical-align: middle;
+}
+
+.workspace-name {
+    display: flex;
+    line-height: 50px;
+    text-align: center;
+}
+
+.navbar-fixed-top .workspace-header {
+    /* width: 36%; */
+    width: 734px;
+}
+
+.app-bar {
+    display: flex;
+}
+
+.app-bar-item{
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.btn-app-bar-notice{
+    width: 44px;
+    height: 44px;
+    line-height: 50px;
+    text-align: center;
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+}
+
+.btn-app-bar-notice:hover{
+    width: 44px;
+    height: 44px;
+    line-height: 50px;
+    text-align: center;
+    background-color: rgb(235, 235, 235);
+    border: none;
+    border-radius: 50%;
+}
+
+.search-btn{
+    overflow: hidden;
+    display: inline-flex;
+    width: 300px;
+    height: 44px;
+    padding: 0 5px;
+    background: #f8f8f8;
+    border: 1px solid #f8f8f8;
+    border-radius: 10px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.search-btn__inner {
+    cursor: pointer;
+    width: 30px;
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.search-btn__placeholder {
+    cursor: pointer;
+    width: calc(100% - 20px);
+    color: #c7cad1;
+    font-size: medium;
+    vertical-align: middle;
+    font-style: normal;
+    line-height: 50px;
+    margin-left: 20px;
+}
+
+.profile-image {
+    width: 44px;
+    height: 44px;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: rgb(65, 115, 255);
+    border: none;
+    border-radius: 50%;
+}
+
+.navbar-fixed-left {
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    background-color: rgb(255, 255, 255);
+    width: 50px;
+    height: calc(100% - 60px);
+    padding-right: 40px;
+    display: flex;
+    flex-direction: column;
+    border-right: solid 1px #dfdfdfaf;
+}
+
+
+
+
+.shelf-button--home {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    /* background-color: #478bff; */
+    background-color: rgb(206, 206, 206);
+    text-align: center;
+    border-radius: 10%;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.shelf-button--home:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #478bff;
+    text-align: center;
+    border-radius: 10%;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.shelf-button--channel {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(206, 206, 206);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--channel:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(138, 214, 119);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--board {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    /* background-color: rgb(206, 206, 206); */
+    background-color: rgb(252, 183, 119);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--board:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(255, 171, 92);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--calendar {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(206, 206, 206);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--calendar:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(230, 119, 252);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--todo {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(206, 206, 206);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--todo:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(253, 80, 80);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--map {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(206, 206, 206);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--map:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(253, 198, 80);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--github {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(206, 206, 206);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--github:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(56, 56, 56);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--bookmark {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(206, 206, 206);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button--bookmark:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(132, 210, 255);
+    text-align: center;
+    border-radius: 10%;
+    margin-bottom: 30px;
+}
+
+.shelf-button-name {
+    width: 94%;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    left: 3%;
+    padding-left: 15px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 180, 109);
+    margin-top: 20px;
+    border-radius: 3px;
+}
+
+
+#left-sidebar-toggle{
+    position: fixed;
+    top: 60px;
+    left: 60px;
+    width: 239px;
+    height: calc(100% - 60px);
+    background-color: white;
+    border-right: solid 1px #dfdfdfaf;
+    display: block;
+}
+
+.left-sidebar-toggle-close {
+    position: fixed;
+    top: 60px;
+    left: 299px;
+    width: 3px;
+    height: calc(100% - 60px);
+    background-color: #f4f6f8;
+}
+
+.left-sidebar-toggle-close:hover {
+    position: fixed;
+    top: 60px;
+    left: 299px;
+    width: 3px;
+    height: calc(100% - 60px);
+    background-color: rgb(171, 201, 255);
+}
+
+.left-sidebar-toggle-close-btn{
+    /* display: block;
+    width
+    height: calc(100% - 60px);
+    line-height: calc(100% - 60px);
+    vertical-align: middle; */
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 42%;
+}
+
+#left-sidebar-toggle-open {
+    position: fixed;
+    top: 60px;
+    left: 60px;
+    width: 2px;
+    height: calc(100% - 60px);
+    background-color: #f4f6f8;
+    display: none;
+}
+
+#left-sidebar-toggle-open:hover {
+    position: fixed;
+    top: 60px;
+    left: 60px;
+    width: 2px;
+    height: calc(100% - 60px);
+    background-color: rgb(171, 201, 255);
+}
+
+.left-sidebar-toggle-open-btn{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 42%;
+}
+
+#content {
+    position: fixed;
+    top: 60px;
+    left: 304px;
+    width: calc(100% - 304px);
+    height: calc(100% - 60px);
+    background-color: #f4f6f8;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+
+    /* text-align: center; */
+    overflow-y:scroll;
+}
+
+
+.content_title {
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    padding-left: 40px;
+    background-color: #ffffff;
+    border-bottom: solid 1px #dfdfdfaf;
+    text-align: left;
+}
+
+.content-view {
+    margin-top: 30px;
+    margin-left: 50px;
+    position: absolute;
+}
+
+.card {
+    background: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    height: 300px;
+    margin: 1rem;
+    position: relative;
+    width: 300px;
+}
+
+.card-2 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+  
+.card-2:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.board-write {
+    margin: 10px;
+    text-align: center;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    z-index: 1;
+}
+
+.btn-hover {
+    width: 90px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 90px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+
+/* .btn-hover.color-2 {
+    background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+    box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+} */
+
+.btn-hover.color-4 {
+    /* background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516); */
+    background-image: linear-gradient(to right, #ffbb56, #ff9a44, #ef9d43, #e75516);
+    box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+}

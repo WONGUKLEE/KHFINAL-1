@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="usermapper">
+  	<select id="selectOne" parameterType="userDto" resultType="userDto">
+  		SELECT * FROM USERTB WHERE USERID=#{userid}
+  	</select>
+  	<select id="emailCheck" parameterType="String" resultType="int">
+  		SELECT COUNT(USERID) FROM USERTB WHERE USERID=#{userid}
+  	</select>
+  	
+  	<insert id="testlogin" parameterType="userDto">
+  		INSERT INTO USERTB
+  		VALUES(#{userid},'000','임시가입','상태메세지','imgurl',SYSDATE,#{authkey},0,'USER')
+  	</insert>
+  	<insert id="naverregist">
+  		INSERT INTO USERTB
+  		VALUES(#{userid},#{userpw},#{username},'상태메세지','imgurl',SYSDATE,'SOCIAL',1,'USER')
+  	</insert>
+
+
+  	
+  	
+  	<update id="regist" parameterType="userDto">
+  		UPDATE USERTB SET USERNAME=#{username},USERPW=#{userpw} WHERE USERID=#{userid}
+  	</update>
+  	<update id="infoUpdate" parameterType="userDto">
+  		UPDATE USERTB SET USERNAME=#{username},STMESSAGE=#{stmessage} WHERE USERID=#{userid}
+  	</update>
+  	<update id="imgupdate" parameterType="userDto">
+  		UPDATE USERTB SET IMGURL=#{imgurl} WHERE USERID=#{userid}
+  	</update>
+  	<update id="authstate" parameterType="userDto">
+  		UPDATE USERTB SET AUTHSTATE=1 WHERE USERID=#{userid}
+  	</update>
+  	<update id="authkeyupdate" parameterType="userDto">
+  		UPDATE USERTB SET AUTHKEY=#{authkey} WHERE USERID = #{userid}
+  	</update>
+  	<update id="adminUpdate" parameterType="hashmap">
+  		UPDATE TEAMCODE SET ADMIN=#{newname} WHERE ADMIN=#{pastname}
+  	</update>
+  	
+  	<!-- testdelete : 테스트유저 회원가입 실패시 삭제-->
+  	<delete id="testdelete" parameterType="userDto">
+  		DELETE FROM USERTB WHERE USERID=#{userid}
+  	</delete>
+  </mapper>

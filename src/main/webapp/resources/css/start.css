@@ -1,0 +1,148 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav .nav-content {
+    /* height: 100%; */
+    margin: 0 3%;
+    display: flex;
+}
+
+nav .logo {
+    padding-top: 10px;
+    width: 80%;
+}
+
+.teamhome {
+    /* background-color: royalblue; */
+    background-color: rgb(255, 255, 255);
+    width: 60%;
+    height: 430px;
+    
+    position: absolute;
+    left: 50%;
+    top: 10%;
+
+    transform: translate(-50%);
+
+    display: flex;
+}
+
+.myprofile {
+    width: 98%;
+    height: 110px;
+    background-color: rgb(255, 255, 255);
+    padding-top: 20px;
+
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translate(-50%);
+
+    display: flex;
+}
+
+.profile-pic {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%; 
+    margin-right: 30px;
+}
+
+.myprofile-detail-name h1{
+    margin: 0px;
+}
+
+.myprofile-detail-email p{
+    margin: 10px 0px 3px 0px;
+}
+
+.myprofile-detail a{
+    margin-top: 50px;
+    color: rgb(100, 180, 255);
+}
+
+.myteam {
+    width: 98%;
+    height: 250px;
+    /* background-color: rgb(102, 168, 255); */
+    background-color: rgb(255, 255, 255);
+
+    position: absolute;
+    left: 50%;
+    top: 170px;
+    transform: translate(-50%);
+
+    display: flex;
+}
+
+.teammake {
+    width: 330px;
+    height: 200px;
+    text-align: center;
+    line-height: 190px;
+    text-decoration:none;
+    color: rgb(52, 52, 52);
+    font-family: "Noto Sans";
+    font-size: 20px;
+    background-color: #f1f1f1;
+    border-radius: 5%;
+    padding: 10px 20px;
+}
+
+.team1 {
+    width: 310px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5%;
+    border: 1px solid rgb(214, 214, 214);
+    margin-left: 30px;
+    padding: 10px 40px;
+}
+
+.workspace-card-icon {
+    /* margin: 15px 0px 0px 30px; */
+    margin-top: 10px;
+    display: block;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    text-align: center;
+}
+
+.team-pic {
+    width: 60px;
+    text-align: center;
+}
+
+.team1 .workspace-card-info {
+    display: flex;
+    margin-top: 20px;
+}
+
+.workspace-card-info__title {
+    font-size: 20px;
+    font-weight: bold;
+    /* color:rgb(22, 115, 255); */
+}
+
+.workspace-card-info__role {
+    color:rgb(172, 172, 172);
+    line-height: 50px;
+    margin-left: 20px;
+     font-size: 20px;
+}
+
+.team1 .workspace-card-menu {
+    margin-top: 30px;
+    display: flex;
+}
+
+.workspace-card-btn-leave {
+    color:rgb(172, 172, 172);
+    margin-left: 20px;
+}

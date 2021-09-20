@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="teammapper">
+	 <select id="teamcheck" parameterType="String" resultType="teamcodeDto">
+  		SELECT * FROM TEAMCODE WHERE TEAMNAME=#{teamname}
+  	</select>
+  	<select id="teamselect" parameterType="String" resultType="teamDto">
+  		SELECT * FROM TEAM WHERE USERID=#{userid}
+  	</select>
+  	<select id="teamlist" parameterType="String" resultType="teamcodeDto">
+  		SELECT A.TEAMCODE, TEAMNAME, TEAMLOGO,ADMIN
+		FROM TEAMCODE A , TEAM B, USERTB C
+		WHERE A.TEAMCODE=B.TEAMCODE
+		AND B.USERID=C.USERID
+		AND C.USERID=#{userid}
+  	</select>
+  	<select id="memberlist" parameterType="int" resultType="userDto">
+  		SELECT A.* FROM USERTB A JOIN TEAM B ON(A.USERID=B.USERID) WHERE TEAMCODE=#{teamcode}
+  	</select>
+  	
+  	<select id="teaminfo" parameterType="int" resultType="teamcodeDto">
+  		SELECT * FROM TEAMCODE WHERE TEAMCODE=#{teamcode}
+  	</select>
+  	
+  	<insert id="maketeam" parameterType="teamcodeDto">
+  		INSERT INTO TEAMCODE
+  		VALUES(TEAMSEQ.NEXTVAL,#{teamname},'teamlogo',#{admin})
+  	</insert>
+  	
+  	<insert id="teaminsert" parameterType="teamDto">
+  		INSERT INTO TEAM
+  		VALUES(#{teamcode},#{userid})
+  	</insert>
+  	
+  </mapper>

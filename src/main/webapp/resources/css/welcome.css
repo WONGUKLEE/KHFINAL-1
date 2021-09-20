@@ -1,0 +1,97 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav .nav-content {
+    /* height: 100%; */
+    margin: 0 3%;
+    display: flex;
+}
+
+nav .logo {
+    padding-top: 10px;
+    width: 80%;
+}
+
+.welcomehome {
+    background-color: rgb(255, 255, 255);
+    width: 60%;
+    height: 70%;
+    text-align: center;
+    
+    position: absolute;
+    left: 50%;
+    top: 10%;
+
+    transform: translate(-50%);
+
+    display: flex;
+    flex-direction:column;
+}
+
+.welcomehome-top {
+    width: 98%;
+    height: 160px;
+    background-color: rgb(255, 255, 255);
+    padding-top: 20px;
+
+    /* position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translate(-50%); */
+
+}
+
+.welcomeimage {
+    width: 100%;
+    text-align: center;
+}
+
+.buttons {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 30px;
+
+    /* position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%); */
+}
+
+.btn-hover {
+    width: 150px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    height: 62.75px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 20px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}

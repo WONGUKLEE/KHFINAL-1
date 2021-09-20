@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  	<typeAliases>
+  		<typeAlias type="com.khfinal.devstairs.user.dto.UserDto" alias="userDto"/>
+  		<typeAlias type="com.khfinal.devstairs.user.dto.TeamCodeDto" alias="teamcodeDto"/>
+  		<typeAlias type="com.khfinal.devstairs.user.dto.TeamDto" alias="teamDto"/>
+  	</typeAliases>
+  	<mappers>
+  		<mapper resource="/mybatis/user-mapper.xml"/>
+  		<mapper resource="/mybatis/team-mapper.xml"/>
+  	</mappers>
+  </configuration>
