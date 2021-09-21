@@ -32,7 +32,7 @@
   	
   	<insert id="teaminsert" parameterType="teamDto">
   		INSERT INTO TEAM
-  		VALUES(#{teamcode},#{userid})
+  		VALUES(#{userid},#{teamcode})
   	</insert>
   	
   </mapper>
