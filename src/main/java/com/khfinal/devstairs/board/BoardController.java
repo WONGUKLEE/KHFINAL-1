@@ -2,6 +2,8 @@ package com.khfinal.devstairs.board;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,7 @@ import com.khfinal.devstairs.board.biz.BoardBiz;
 @Controller
 public class BoardController {
 	
-	//private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@Autowired
 	private BoardBiz biz;
@@ -20,7 +22,7 @@ public class BoardController {
 	//private BoardReplyBiz brReplybiz;
 	@RequestMapping("/boardlist.do")
 	public String list(Model model, HttpSession session, int b_teamcode) {
-		//logger.info("boardlist");
+		logger.info("boardlist");
 		
 		model.addAttribute("list", biz.selectList(b_teamcode));
 		

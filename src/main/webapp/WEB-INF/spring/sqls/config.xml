@@ -8,12 +8,12 @@
   		<typeAlias type="com.khfinal.devstairs.user.dto.TeamCodeDto" alias="teamcodeDto"/>
   		<typeAlias type="com.khfinal.devstairs.user.dto.TeamDto" alias="teamDto"/>
   		<typeAlias type="com.khfinal.devstairs.board.dto.BoardDto" alias="boardDto"/>
+  		<typeAlias type="com.khfinal.devstairs.board.dto.BoardReplyDto" alias="boardReplyDto"/>
   	</typeAliases>
   	<mappers>
   		<mapper resource="/mybatis/user-mapper.xml"/>
   		<mapper resource="/mybatis/team-mapper.xml"/>
   		<mapper resource="/mybatis/board-mapper.xml"/>
   		<mapper resource="/mybatis/reply-mapper.xml"/>
-  		
   	</mappers>
   </configuration>
