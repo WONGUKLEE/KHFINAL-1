@@ -2,8 +2,6 @@ package com.khfinal.devstairs.board;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +16,8 @@ public class BoardController {
 	
 	@Autowired
 	private BoardBiz biz;
-	
+	//@Autowired
+	//private BoardReplyBiz brReplybiz;
 	@RequestMapping("/boardlist.do")
 	public String list(Model model, HttpSession session, int b_teamcode) {
 		logger.info("boardlist");
@@ -102,5 +101,28 @@ public class BoardController {
 //	}
 //	
 //	
-	
+//	@RequestMapping("/replyupdate")
+//	public String ReplyUpdate(BoardReplyDto dto) {
+//		System.out.println("index : " + dto.getBr_index() + " / content : " + dto.getBr_content());
+//		//brReplybiz.ReplyUpdate(dto);
+//
+//		return "redirect:detail.do?b_no=" + dto.getBr_no();
+//
+//	}
+//
+//	@RequestMapping("/replydelete")
+//	public String replydelete(BoardReplyDto dto, int b_no) {
+//		//brReplybiz.ReplyDelete(dto);
+//
+//		return "redirect:detail.do?b_no=" + b_no;
+//	}
+//	
+//	@RequestMapping("/replywrite")
+//	public String ReplyWrite(BoardReplyDto dto) {
+//		System.out.println("�슂泥� �꽆�뼱�솕�떎�떎 : " + dto.getBr_no() + "/ " + dto.getBr_userid() + " / " + dto.getBr_content());
+//		//brReplybiz.ReplyWrite(dto);
+//
+//		return "redirect:detail.do?b_no=" + dto.getBr_no();
+//
+//	}
 }
