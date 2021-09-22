@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html; charset = UTF-8"); %>
+
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -337,165 +343,31 @@
                     <button class="btn-hover color-4"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
                 </div>
                 <div class="boardlist">
-                    <div class="card card-2">
-                        <img class="thumbnail" src="images/boardtest1.jpeg">
-                        <div class="board-title">Web scrapers tools</div>
-                        <div class="board-content">It is a method of extracting data from the internet. People use this process to find and store information on their servers, like what we're doing right now.</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/boardtest2.png">
-                        <div class="board-title">dynamic import (ES2020 & Next.JS)</div>
-                        <div class="board-content">Dynamic Import 간략한 소개
-                            - ECMAScript 2020에 새로 추가된 기능
-                            - BuildTime에서 import 하는 것이 아닌 RunTime에서 import
-                            - 처음 불러오는 파일들의 용량 Down
-                            - 웹페이지 로딩속도 Up === 퍼포먼스 향상</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/boardtest3.png">
-                        <div class="board-title">문제의 대부분은 동기/비동기 문제다.</div>
-                        <div class="board-content">사이드 프로젝트를 진행하던 중 문제에 마주쳤었다.
-
-                            다음 부분이 문제가 되었던 부분이다.
-                            
-                            const set_id = await saveSets(data)
-                            set_id.map(async(i,j)=>{
-                              const props = {
-                                session_id: title_id,
-                                set_id:set_id,
-                                workout_id:workoutid
-                              }
-                              Session_Set.create(props)
-                            })
-                            위의 코드는 set_id에 배열 형태로 set의 id를 저장하고, set_id의 개수만큼 map()을 돌면서 db에 저장하는 코드이다.</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="resources/images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(255, 211, 37);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/logoicon.svg">
-                        <div class="board-title">TEST 중</div>
-                        <div class="board-content">여기는 최대 4줄만 들어가게 만들었습니다. 근데 Velog 보니깐 무조건 앞의 내용을 추출하는게 아니라 일련의 규칙이 있는 것 같아요. 그거는 찾아봐야할 것 같슴돠 ㅠㅠㅠ 이제 슬슬 4줄 되려나 ?!</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/cardtest.png">
-                        <div class="board-title">이미지 테스트 중</div>
-                        <div class="board-content">다음엔 작은 이미지 넣어보자</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/profile.svg">
-                        <div class="board-title">Web scrapers tools</div>
-                        <div class="board-content">It is a method of extracting data from the internet. People use this process to find and store information on their servers, like what we're doing right now.</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="resources/images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/test.png">
-                        <div class="board-title">Web scrapers tools</div>
-                        <div class="board-content">It is a method of extracting data from the internet. People use this process to find and store information on their servers, like what we're doing right now.</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/boardtest1.jpeg">
-                        <div class="board-title">Web scrapers tools</div>
-                        <div class="board-content">It is a method of extracting data from the internet. People use this process to find and store information on their servers, like what we're doing right now.</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/boardtest1.jpeg">
-                        <div class="board-title">Web scrapers tools</div>
-                        <div class="board-content">It is a method of extracting data from the internet. People use this process to find and store information on their servers, like what we're doing right now.</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="resources/images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="card card-2">
-                        <img class="thumbnail" src="resources/images/boardtest1.jpeg">
-                        <div class="board-title">Web scrapers tools</div>
-                        <div class="board-content">It is a method of extracting data from the internet. People use this process to find and store information on their servers, like what we're doing right now.</div>
-                        <div class="board-info">
-                            <span>
-                                <img src="resources/images/profile.svg"
-                            style="border-radius: 50%;" height="30px">
-                            </span>
-                            <span class="board-writer">by zzanggu</span>
-                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
-                        </div>
-                    </div>
-
-
-
+                	<c:choose>
+                		<c:when test="${empty list}">
+                			<div>
+                				<div>게시글이 없습니다.</div>
+                			</div>
+                		</c:when>
+                		<c:otherwise>
+                			<c:forEach items = "${list}" var = "dto">
+                				<div class="card card-2">
+			                        <img class="thumbnail" src="images/boardtest1.jpeg">
+			                        <div class="board-title">Web scrapers tools</div>
+			                        <div class="board-content">It is a method of extracting data from the internet. People use this process to find and store information on their servers, like what we're doing right now.</div>
+			                        <div class="board-info">
+			                            <span>
+			                                <img src="images/profile.svg"
+			                            style="border-radius: 50%;" height="30px">
+			                            </span>
+			                            <span class="board-writer">by zzanggu</span>
+			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
+			                        </div>
+		                    	</div>
+                			
+                			</c:forEach>
+                		</c:otherwise>
+                	</c:choose>
                 </div>
             </div>
         </div>

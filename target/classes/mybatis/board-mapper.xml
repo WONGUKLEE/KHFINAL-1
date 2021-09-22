@@ -3,7 +3,63 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="">
- 
+ <mapper namespace="board">
+ 	
+ 	<select id = "list" parameterType = "int" resultType = "boardDto">
+ 		SELECT *
+ 		FROM BOARD
+ 		WHERE B_TEAMCODE = #{b_teamcode}
+ 		ORDER BY B_NO DESC
+ 		
+ 	</select>
+ 	
+ 	 <select id = "mylist" resultType = "boardDto">
+	  	SELECT *
+	  	FROM BOARD
+	  	WHERE B_USERID = #{b_userid} AND B_CATEGORY = #{b_category}
+	  	ORDER BY B_NO DESC
+	  	
+    </select>
+ 	
+ 	<select id = "writetype" resultType = "boardDto">
+	  	SELECT *
+	  	FROM BOARD
+	  	WHERE C_NO = #{c_no}
+	  	ORDER BY B_NO DESC
+	  	
+ 	</select>
+ 	
+ 	<select id = "selectOne" parameterType = "int" resultType = "boardDto">
+ 		SELECT *
+ 		FROM BOARD
+ 		WHERE B_NO = #{b_no}
+ 		
+ 	</select>
+ 	 	
+ 	<insert id = "insert" parameterType = "boardDto">
+ 		INSERT INTO BOARD
+ 		VALUES (BOARD_NUM.NEXTVAL, #{b_userid}, #{c_no}, #{b_teamcode}, #{b_title}, #{b_content}, SYSDATE, NULL, NULL, 0, #{b_category}, 0)
+ 		
+ 	</insert>
+ 	
+ 	<update id = "update" parameterType = "boardDto">
+ 		UPDATE BOARD
+ 		SET B_TITLE = #{b_title}, B_CONTENT = #{b_content}, B_CATEGORY = #{b_category}
+ 		WHERE B_NO = #{b_no}
+ 		
+ 	</update>
+
+	<delete id = "delete" parameterType = "int">
+		DELETE FROM BOARD
+		WHERE B_NO = #{b_no}
+		
+	</delete>
+	
+	<update id = "plusCnt" parameterType = "int">
+		UPDATE BOARD
+		SET B_READCNT = B_READCNT + 1
+		WHERE B_NO = #{b_no}
+		
+	</update>
  
  </mapper>

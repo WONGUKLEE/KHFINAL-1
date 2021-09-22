@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.khfinal.devstairs.user" />
+	<context:component-scan base-package="com.khfinal.devstairs.user, com.khfinal.devstairs.board" />
 	
 	<beans:bean id="loginInterceptor" class="com.khfinal.devstairs.user.interceptor.LoginInterceptor"/>
 	

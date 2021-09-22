@@ -256,7 +256,7 @@
                     style="font-size: 1rem; color:rgb(255, 248, 248);"></i></a>
             <a href="views/workspace-chat.jsp" class="shelf-button--channel"><i class="fas fa-comment"
                     style="font-size: 1rem; color:rgb(255, 248, 248);"></i></a>
-            <a href="workspace-board.jsp" class="shelf-button--board"><i class="fas fa-pen"
+            <a href="boardlist.do?b_teamcode=${teaminfo.teamcode }" class="shelf-button--board"><i class="fas fa-pen"
                     style="font-size: 1rem; color:rgb(255, 248, 248);"></i></a>
             <a href="workspace-calendar.jsp" class="shelf-button--calendar"><i class="fas fa-calendar-alt"
                     style="font-size: 1rem; color:rgb(255, 248, 248);"></i></a>
