@@ -2,6 +2,9 @@ package com.khfinal.devstairs.board.dto;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class BoardDto {
 	private int b_no;
 	private String b_userid;
@@ -16,12 +19,12 @@ public class BoardDto {
 	private String b_category;
 	private int b_likecnt;
 	
-	//기본 메소드
+	//湲곕낯 硫붿냼�뱶
 	public BoardDto() {
 		super();
 	}
 
-	//매개변수 메소드
+	//留ㅺ컻蹂��닔 硫붿냼�뱶
 	public BoardDto(int b_no, String b_userid, int c_no, int b_teamcode, String b_title, String b_content, Date b_date,
 			String b_img, String b_file, int b_readcnt, String b_category, int b_likecnt) {
 		super();

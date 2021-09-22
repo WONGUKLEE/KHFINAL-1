@@ -2,6 +2,9 @@ package com.khfinal.devstairs.board.dto;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class BoardReplyDto {
 	private int br_index;
 	private int br_no;
