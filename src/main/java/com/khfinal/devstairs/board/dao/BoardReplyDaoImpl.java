@@ -20,7 +20,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 		 
 		try {
 			
-			list = sqlSession.ReplyList(NAMESPACE+"ReplyList",br_no);
+			list = sqlSession.selectList(NAMESPACE+"ReplyList",br_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("");
@@ -31,34 +31,35 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 	}
 
 	@Override
-	public String ReplyWrite(BoardReplyDto dto) {
+	public int ReplyWrite(BoardReplyDto dto) {
 		int res =0;
 		
 		
 		try {
 			
-			res = sqlSession.ReplyWrite(NAMESPACE+"ReplyWrite",dto){
+			//res = sqlSession.ReplyWrite(NAMESPACE+"ReplyWrite",dto){
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("REPLYWRITE 에러");
 		}
 		System.out.println(res);	
 	
-		
+		return 0;
 	}
 
 	@Override
-	public String ReplyUpdate(BoardReplyDto dto) {
+	public int ReplyUpdate(BoardReplyDto dto) {
 		int res =0;
 		
 		try {
 			
-			res= sqlSession.Update(NAMESPACE+"ReplyUpdate",dto){
+			res= sqlSession.update(NAMESPACE+"ReplyUpdate",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("REPLYUPDATE 에러");
 		}
 			System.out.println(res);
+			return res;
 	}
 
 	@Override
@@ -67,7 +68,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 		
 		try {
 			
-			res=sqlSession.Delete(NAMESPACE+"ReplyDelete",dto){
+			res=sqlSession.delete(NAMESPACE+"ReplyDelete",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("REPLYDELETE 에러");
@@ -75,9 +76,10 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 		}
 		
 		System.out.println(res);
-		}
+		
+		return res;
 	
 	}
-	}
+}
 
 	
