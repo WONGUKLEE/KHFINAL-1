@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -192,7 +193,6 @@ public class UserDao {
 	//정보수정시(유저 이름) admin값
 	public int AdminNameUpdate(Map<String,String> map) {
 		int res = 0;
-		
 		try {
 			res= sqlSession.update(namespace+"adminUpdate",map);
 		} catch (Exception e) {
