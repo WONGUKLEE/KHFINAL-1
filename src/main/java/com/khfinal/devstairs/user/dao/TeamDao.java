@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.khfinal.devstairs.user.dto.InviteDto;
 import com.khfinal.devstairs.user.dto.TeamCodeDto;
 import com.khfinal.devstairs.user.dto.TeamDto;
 import com.khfinal.devstairs.user.dto.UserDto;
@@ -122,6 +123,29 @@ public class TeamDao {
 			return list;
 		}
 		
+		//invite테이블에 팀원 추가하는 메소드
+		public int inviteUser(InviteDto dto) {
+			int res = 0;
+			
+			try {
+				res = sqlSession.insert(namespace+"inviteUser",dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return res;
+		}
 		
+		//invite테이블에 팀원 지우는거
+		public int inviteDel(InviteDto dto) {
+			int res = 0;
+			
+			try {
+				res = sqlSession.delete(namespace+"inviteDel",dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return res;
+		}
 		
 }

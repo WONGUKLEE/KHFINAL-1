@@ -39,4 +39,12 @@
   		VALUES(#{userid},#{teamcode})
   	</insert>
   	
+  	<insert id="inviteUser" parameterType="inviteDto">
+  		INSERT INTO INVITE
+  		VALUES(#{userid},#{teamcode})
+  	</insert>
+  	<delete id="inviteDel" parameterType="inviteDto">
+  		DELETE FROM INVITE
+  		WHERE USERID=#{userid} AND TEAMCODE=#{teamcode}
+  	</delete>
   </mapper>

@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.khfinal.devstairs.user.biz.TeamBiz;
 import com.khfinal.devstairs.user.biz.UserBiz;
+import com.khfinal.devstairs.user.dto.InviteTeamDto;
 import com.khfinal.devstairs.user.dto.TeamCodeDto;
 import com.khfinal.devstairs.user.dto.UserDto;
 
@@ -236,9 +237,11 @@ public class HomeController {
 	public String success(HttpSession session,Model model) {
 		UserDto login = (UserDto) session.getAttribute("login");
 		List<TeamCodeDto> list = teambiz.getTeamList(login.getUserid());
+		List<InviteTeamDto> invitelist = biz.inviteList(login.getUserid());
 		System.out.println(list);
 		model.addAttribute("login",session.getAttribute("login"));
 		model.addAttribute("list",list);
+		model.addAttribute("invite",invitelist);
 		return "start";
 	}
 	
@@ -280,8 +283,8 @@ public class HomeController {
 		
 		return map;
 		
-		
 	}
+	
 	
 	
 	
