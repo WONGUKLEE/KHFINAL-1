@@ -350,17 +350,23 @@
                 			</div>
                 		</c:when>
                 		<c:otherwise>
+
                 			<c:forEach items = "${list}" var = "dto">
                 				<div class="card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
 			                        <img class="thumbnail" src="images/boardtest1.jpeg">
-			                        <div class="board-title">${dto.b_title}</div>
-			                        <div class="board-content">${dto.b_content}</div>
+			                        <div class="board-title"></div>
+			                        <div class="board-content"></div>
+
 			                        <div class="board-info">
 			                            <span>
-			                                <img src="images/profile.svg"
+			                                <img src="images/profile.svg">
 			                            style="border-radius: 50%;" height="30px">
 			                            </span>
+
+			                            <span class="board-writer"></span>
+
 			                            <span class="board-writer">${dto.b_userid }</span>
+
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
 		                    	</div>                			
@@ -517,6 +523,7 @@
                 }
             }
         }
+    
     </script>
 	
 </body>

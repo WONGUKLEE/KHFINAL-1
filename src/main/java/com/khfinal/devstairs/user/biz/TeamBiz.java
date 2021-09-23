@@ -39,5 +39,7 @@ public class TeamBiz {
 	public TeamCodeDto teaminfo(int teamcode) {
 		return dao.teaminfo(teamcode);
 	}
-	
+	public List<UserDto> searchUser(String email,String userid){
+		return dao.searchUser(email,userid);
+	}
 }

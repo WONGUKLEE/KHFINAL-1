@@ -1,7 +1,9 @@
 package com.khfinal.devstairs.user.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,6 +104,22 @@ public class TeamDao {
 				e.printStackTrace();
 			}
 			return dto;
+		}
+		
+		
+		//검색을 통해서 userlist 불러오는 메소드
+		public List<UserDto> searchUser(String email,String userid){
+			List<UserDto> list = null;
+			Map<String,String> map = new HashMap<String, String>();
+			map.put("email",email);
+			map.put("userid", userid);
+			try {
+				list = sqlSession.selectList(namespace+"searchUser", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return list;
 		}
 		
 		

@@ -39,12 +39,14 @@
             <form action="makeWorkspace.do" method="get">
 
                 <label class="form-label"><i class="fas fa-paper-plane"></i><strong> &nbspWhat do you want to call your teamworkspace?</strong></label>
-                <input id="workspaceName" type="text" placeholder="Workspace name" name="teamname">
+                <input id="workspaceName" type="text" placeholder="Workspace name" name="teamname" class="workspaceName">
                 <br>
                 <div id="teamnamechk"></div>
                 <label class="invite-email"><i class="fas fa-envelope"></i><strong> &nbspInvite people via email</strong></label>
-                <input id="workspaceName" type="text" placeholder="E-mail">
+                <input id="inviteemail" type="text" placeholder="E-mail" class="workspaceName">
+                <ui id="result">
                 
+                </ui>
                 <div class="form-buttons">
                     <button type="button" class="button-cancel" onclick="location.href='start.do'">취소</button>
                     <button type="submit" class="button-confirm" id="submitbtn">확인</button>
@@ -84,6 +86,36 @@
 	    			});
     			}
     		});
+    		
+    		$("#inviteemail").keyup(function(){
+    			var email = $(this).val();
+    			if(email!=null||email!=""){
+    				$.ajax({
+    					url:'userCheck.do',
+    					data:'email='+email,
+    					type :'get',
+    					success : function(data){
+    						$("#result").empty();
+    						if(data.length>0 && email.length>0){
+    							for(i=0;i<data.length;i++){
+	    							$("#result").append(
+	    								"<li value="+data[i].userid+">"+data[i].userid +" / "+ data[i].username+"</li>"		
+	    							);
+    							}
+    							
+    						}
+    					},
+    					error : function(){
+    						alert('통신실패');
+    					}
+    				});
+    			}
+    		});
+    		
+    		
+    		
+    		
+    		
     	});
     </script>
 	
