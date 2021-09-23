@@ -25,6 +25,10 @@
   		SELECT * FROM TEAMCODE WHERE TEAMCODE=#{teamcode}
   	</select>
   	
+  	<select id="searchUser" parameterType="hashmap" resultType="userDto">
+  		SELECT * FROM USERTB WHERE USERID LIKE '%'||#{email}||'%' AND AUTHSTATE=1 AND USERID !=#{userid}
+  	</select>
+  	
   	<insert id="maketeam" parameterType="teamcodeDto">
   		INSERT INTO TEAMCODE
   		VALUES(TEAMSEQ.NEXTVAL,#{teamname},'teamlogo',#{admin})

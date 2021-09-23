@@ -1,5 +1,6 @@
 package com.khfinal.devstairs.user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +84,19 @@ public class TeamController {
 		return "redirect:teammakeform.do";
 	}
 	
-	
+	@RequestMapping(value="/userCheck.do",method = {RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public List<UserDto> searchUserList(String email,HttpSession session){
+		UserDto dto = (UserDto) session.getAttribute("login");
+		String userid = dto.getUserid();
+		List<UserDto> list = new ArrayList<UserDto>();
+		list = teambiz.searchUser(email,userid);
+
+		
+		
+		return list;
+		
+	}
 	
 	
 	
