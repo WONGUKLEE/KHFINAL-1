@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.khfinal.devstairs.board.biz.BoardBiz;
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.user.dto.UserDto;
 
 @Controller
 public class BoardController {
@@ -25,8 +26,15 @@ public class BoardController {
 	public String list(Model model, HttpSession session, int b_teamcode) {
 		logger.info("boardlist");
 		
-		model.addAttribute("list", biz.selectList(b_teamcode));
+		UserDto dto = (UserDto) session.getAttribute("login");
+		String b_userid = dto.getUserid();
 		
+		model.addAttribute("b_userid", b_userid);
+		model.addAttribute("b_teamcode", b_teamcode);
+		model.addAttribute("list", biz.selectList(b_teamcode));
+		System.out.println(biz.selectList(b_teamcode).get(0).getB_title());
+		model.addAttribute("mylist", biz.myList(b_userid, b_teamcode));
+
 		return "workspace-board";
 		
 	}
@@ -42,9 +50,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/writeform.do")
-	public String writeForm() {
+	public String writeForm(Model model, HttpSession session, int b_teamcode) {
 		logger.info("writeform");
 		
+		UserDto dto = (UserDto) session.getAttribute("login");
+		
+		model.addAttribute("b_userid", dto.getUserid());
+		model.addAttribute("b_teamcode", b_teamcode);
+
 		
 		return "boardwrite";
 		
@@ -57,7 +70,7 @@ public class BoardController {
 		int res = biz.insert(dto);
 		
 		if(res > 0) {
-			return "redirect:boardlist.do?b_teamcode" + dto.getB_teamcode();
+			return "redirect:boardlist.do?b_teamcode=" + dto.getB_teamcode();
 		} else {
 			return "redirect:writeform.do";
 		}
@@ -82,15 +95,15 @@ public class BoardController {
 //	}
 //	
 	@RequestMapping("/boarddelete.do")
-	public String delete(BoardDto dto) {
+	public String delete(int b_no, int b_teamcode) {
 		logger.info("boarddetail");
 		
-		int res = biz.delete(dto); 
+		int res = biz.delete(b_no); 
 		
 		if(res > 0) {
-			return "redirect:boardlist.do?b_teamcode=" + dto.getB_teamcode();
+			return "redirect:boardlist.do?b_teamcode=" + b_teamcode;
 		} else {
-			return "redirect:boarddetail.do?b_no=" + dto.getB_no();
+			return "redirect:boarddetail.do?b_no=" + b_no;
 		}
 		
 		

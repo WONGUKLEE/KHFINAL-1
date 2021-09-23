@@ -11,6 +11,10 @@
   		SELECT COUNT(USERID) FROM USERTB WHERE USERID=#{userid}
   	</select>
   	
+  	<select id="inviteList" parameterType="String" resultType="inviteTeamDto">
+  		SELECT USERID, TEAMNAME, A.TEAMCODE FROM INVITE A JOIN TEAMCODE B ON(A.TEAMCODE=B.TEAMCODE) WHERE USERID=#{userid}
+  	</select>
+  	
   	<insert id="testlogin" parameterType="userDto">
   		INSERT INTO USERTB
   		VALUES(#{userid},'000','임시가입','상태메세지','imgurl',SYSDATE,#{authkey},0,'USER')

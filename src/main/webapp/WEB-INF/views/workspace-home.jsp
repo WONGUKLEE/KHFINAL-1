@@ -111,7 +111,9 @@
                 <span id="profile_close">&times;</span>
                 <div class="profile-setting-menu">
                     <button type="button" class="account-info-button">Account Information</button>
-                    <button type="button" class="change-password-button" onclick="update_password_modal_open();">Change
+                    <c:if test="${login.authkey !='SOCIAL' }">
+	                    <button type="button" class="change-password-button" onclick="update_password_modal_open();">Change
+                    </c:if>
                         Password</button>
                     <!-- <button type="button" class="change-password-button">Change Password</button> -->
                 </div>
@@ -153,7 +155,7 @@
                 </div>
             </div>
         </div>
-
+		<c:if test="${login.authkey !='SOCIAL' }">
         <div id="update_password_modal" class="modal2">
             <div class="modal-content">
                 <span id="update_password_close">&times;</span>
@@ -186,12 +188,13 @@
                             <button type="button" id="button-cancel2">취소</button>
                             <button type="submit" class="button-confirm">확인</button>
                         </div>
+		
                     </form>
 
                 </div>
             </div>
         </div>
-
+		</c:if>
         <div id="team_modal" class="modal3">
             <div class="modal-content">
                 <span id="team_modal_close">&times;</span>

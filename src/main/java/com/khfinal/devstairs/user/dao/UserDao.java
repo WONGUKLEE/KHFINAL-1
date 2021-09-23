@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.khfinal.devstairs.user.dto.InviteTeamDto;
 import com.khfinal.devstairs.user.dto.UserDto;
 
 @Repository
@@ -190,7 +193,6 @@ public class UserDao {
 	//정보수정시(유저 이름) admin값
 	public int AdminNameUpdate(Map<String,String> map) {
 		int res = 0;
-		
 		try {
 			res= sqlSession.update(namespace+"adminUpdate",map);
 		} catch (Exception e) {
@@ -200,6 +202,18 @@ public class UserDao {
 		return res;
 	}
 	
+	//초대된 팀 있나 가져오는 메소드
+	public List<InviteTeamDto> inviteList(String userid){
+		List<InviteTeamDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(namespace+"inviteList",userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 	
 	

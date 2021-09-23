@@ -32,6 +32,24 @@
                         <dic class="myprofile-detail-email"><p>${login.userid }</p></dic>
                         <dic class="myprofile-detail-setting"><a>User setting</a>&nbsp&nbsp&nbsp<a onclick="logout();">LogOut</a></dic>
                     </div>
+                    <c:choose>
+                    	<c:when test="${ empty invite}">
+
+                    	</c:when>
+                    	<c:otherwise>
+	                    		<div >
+	                    			<table>
+			                    		<c:forEach items="${invite }" var="dto">
+			                   				<tr>
+			                   					<td>${dto.teamname } 에서 초대장이 왔슈</td>
+			                   					<td><input type="button" value="O" onclick="addTeam(${dto.teamcode});"></td>
+			                   					<td><input type="button" value="X" onclick="deleteTeam(${dto.teamcode});"></td>
+			                   				</tr>
+			                    		</c:forEach>
+	                    			</table>
+	                    		</div>
+                    	</c:otherwise>
+                    </c:choose>
 
                 </div>
                 
@@ -94,6 +112,53 @@
         		});
         	}
         }
+        
+        function addTeam(data){
+        	var teamcode = data;
+			if(confirm('이 팀에 참여하시겠습니까?')){
+					$.ajax({
+						url:'addTeam.do',
+						type:'post',
+						data:'teamcode='+teamcode,
+						dataType:'json',
+						success:function(msg){
+							if(msg.check==true){
+								alert('참여성공');
+							}else{
+								alert('참여실패');
+							}
+							window.location.reload();
+						},
+						error:function(){
+							alert('통신실패');
+						}
+					});	
+			}
+        }
+        function deleteTeam(data){
+        	var teamcode = data;
+        	if(confirm('요청을 삭제할까요?')){
+        		$.ajax({
+        			url:'inviteDel.do',
+        			type:'post',
+        			data:'teamcode='+teamcode,
+        			dataType:'json',
+					success:function(msg){
+						if(msg.check==true){
+							alert('삭제성공');
+						}else{
+							alert('삭제실패');
+						}
+						window.location.reload();
+					},
+					error:function(){
+						alert('통신실패');
+					}
+        		});
+        	}
+        }
+        
+        
         </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.user.dto.TeamDto;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -30,10 +31,14 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return list;
 	}
+	
+	
 
 	@Override
-	public List<BoardDto> myList(BoardDto dto) {
-		List<BoardDto> list = new ArrayList<BoardDto>();
+	public List<BoardDto> myList(String b_userid, int b_teamcode) {
+		List<BoardDto> list = null;
+		
+		TeamDto dto = new TeamDto(b_teamcode, b_userid);
 		
 		try {
 			list = sqlSession.selectList(NAMESPACE + "mylist", dto);
@@ -139,11 +144,11 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int delete(BoardDto dto) {
+	public int delete(int b_no) {
 		int res = 0;
 		
 		try {
-			res = sqlSession.delete(NAMESPACE + "delete", dto);
+			res = sqlSession.delete(NAMESPACE + "delete", b_no);
 			
 		} catch (Exception e) {
 			System.out.println("[error] Delete");

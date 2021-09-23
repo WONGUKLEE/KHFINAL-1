@@ -102,32 +102,41 @@
 <body>
 	<h2>글 상세보기</h2>
 	
-	<div>
-		<div>${dto.b_title}</div>
-		<div>${dto.b_userid}</div>
-		<div>${dto.b_date}</div>
-		<div><img src = "resources/images/viewer.png" style = "width : 15px; height : 15px;">${dto.b_readcnt}</div>
-		<div>글 유형 : ${dto.c_no}</div>
+	<div class = ${dto.b_teamcode }>
+		<div>
+			<div>${dto.b_title}</div>
+			<div>${dto.b_userid}</div>
+			<div>${dto.b_date}</div>
+			<div><img src = "resources/images/viewer.png" style = "width : 15px; height : 15px;">${dto.b_readcnt}</div>
+			<div>글 유형 : ${dto.c_no}</div>
+		</div>
+		
+		<div>
+			 ${dto.b_content}
+		</div>
+		
+		<div class = ${dto.b_no }>
+			<input type = "button" value = "수정" onclick = "location.href='updateform.do?b_no=${dto.b_no}'">
+			<input type = "button" value = "삭제" class = "board_delete">
+			<input type = "button" value = "목록" onclick = "location.href='boardlist.do?b_teamcode=${dto.b_teamcode}'">
+		</div>
 	</div>
 	
-	<div>
-		 ${dto.b_content}
-	</div>
 	
-	<div class = ${dto.b_no }>
-		<input type = "button" value = "수정" onclick = "location.href='updateform.do?b_no=${dto.b_no}'">
-		<input type = "button" value = "삭제" class = "board_delete">
-		<input type = "button" value = "목록" onclick = "location.href='boardlist.do?b_teamcode=${dto.b_teamcode}'">
-	</div>
+	
 	
 	<script>
 
 		$('.board_delete').click(function(){
 			
 			var b_no = $(this).parent().attr('class');
+			var b_teamcode = $(this).parent().parent().attr('class');
+			
+			alert(b_no);
+			alert(b_teamcode);
 			
 			if(confirm("해당한 글과 댓글이 삭제되는데 정말로 삭제하시겠습니까?")){
-				location.href='boarddelete.do?b_no=' + b_no;
+				location.href='boarddelete.do?b_no=' + b_no + "&b_teamcode=" + b_teamcode;
 				
 			} else {
 				alert("삭제 취소를 하셨습니다.");

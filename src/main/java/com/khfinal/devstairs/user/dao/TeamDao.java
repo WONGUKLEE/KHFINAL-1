@@ -1,12 +1,15 @@
 package com.khfinal.devstairs.user.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.khfinal.devstairs.user.dto.InviteDto;
 import com.khfinal.devstairs.user.dto.TeamCodeDto;
 import com.khfinal.devstairs.user.dto.TeamDto;
 import com.khfinal.devstairs.user.dto.UserDto;
@@ -105,5 +108,44 @@ public class TeamDao {
 		}
 		
 		
+		//검색을 통해서 userlist 불러오는 메소드
+		public List<UserDto> searchUser(String email,String userid){
+			List<UserDto> list = null;
+			Map<String,String> map = new HashMap<String, String>();
+			map.put("email",email);
+			map.put("userid", userid);
+			try {
+				list = sqlSession.selectList(namespace+"searchUser", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return list;
+		}
+		
+		//invite테이블에 팀원 추가하는 메소드
+		public int inviteUser(InviteDto dto) {
+			int res = 0;
+			
+			try {
+				res = sqlSession.insert(namespace+"inviteUser",dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return res;
+		}
+		
+		//invite테이블에 팀원 지우는거
+		public int inviteDel(InviteDto dto) {
+			int res = 0;
+			
+			try {
+				res = sqlSession.delete(namespace+"inviteDel",dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return res;
+		}
 		
 }

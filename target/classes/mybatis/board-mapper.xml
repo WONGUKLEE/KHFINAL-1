@@ -16,10 +16,10 @@
  		
  	</select>
  	
- 	 <select id = "mylist" resultType = "boardDto">
+ 	 <select id = "mylist" parameterType = "teamDto" resultType = "boardDto">
 	  	SELECT *
 	  	FROM BOARD
-	  	WHERE B_USERID = #{b_userid} AND B_CATEGORY = #{b_category}
+	  	WHERE B_USERID = #{userid} AND B_TEAMCODE = #{teamcode} AND B_CATEGORY = '개인'
 	  	ORDER BY B_NO DESC
 	  	
     </select>
@@ -52,7 +52,7 @@
  		
  	</update>
 
-	<delete id = "delete" parameterType = "boardDto">
+	<delete id = "delete" parameterType = "int">
 		DELETE FROM BOARD
 		WHERE B_NO = #{b_no}
 		

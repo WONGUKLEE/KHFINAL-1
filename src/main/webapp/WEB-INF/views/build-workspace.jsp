@@ -20,6 +20,10 @@
     .nameConfirm{
     	color : green;
     }
+    #adduserList{
+    	font-size : 10px;
+    	color : gray;
+    }
     
     </style>
 </head>
@@ -36,15 +40,17 @@
             </div>
             <h1>Build a workspace your team will love.</h1>
             <p></p>
-            <form action="makeWorkspace.do" method="get">
+            <form action="makeWorkspace.do" method="get" id="table">
 
                 <label class="form-label"><i class="fas fa-paper-plane"></i><strong> &nbspWhat do you want to call your teamworkspace?</strong></label>
-                <input id="workspaceName" type="text" placeholder="Workspace name" name="teamname">
+                <input id="workspaceName" type="text" placeholder="Workspace name" name="teamname" class="workspaceName">
                 <br>
                 <div id="teamnamechk"></div>
-                <label class="invite-email"><i class="fas fa-envelope"></i><strong> &nbspInvite people via email</strong></label>
-                <input id="workspaceName" type="text" placeholder="E-mail">
+                <label class="invite-email"><i class="fas fa-envelope"></i><strong> &nbspInvite people via email</strong><span id="adduserList">&nbsp선택인원 : </span></label>
+                <input id="inviteemail" type="text" placeholder="E-mail" class="workspaceName">
+                <table id="result">
                 
+                </table>
                 <div class="form-buttons">
                     <button type="button" class="button-cancel" onclick="location.href='start.do'">취소</button>
                     <button type="submit" class="button-confirm" id="submitbtn">확인</button>
@@ -84,7 +90,41 @@
 	    			});
     			}
     		});
+    		
+    		$("#inviteemail").keyup(function(){
+    			var email = $(this).val();
+    			if(email!=null||email!=""){
+    				$.ajax({
+    					url:'userCheck.do',
+    					data:'email='+email,
+    					type :'get',
+    					success : function(data){
+    						$("#result").empty();
+    						if(data.length>0 && email.length>0){
+    							for(i=0;i<data.length;i++){
+	    							$("#result").append(
+	    								"<tr><td onclick='addUser($(this).text());'>"+data[i].userid+"</td><td> // 이름 : "+data[i].username+"</td></tr>"		
+	    							);
+    							}
+    							
+    						}
+    					},
+    					error : function(){
+    						alert('통신실패');
+    					}
+    				});
+    			}
+    		});
+    		
+    		
+    		
+    		
+    		
     	});
+    		function addUser(data){
+    			$("#adduserList").append(data+" ");
+    			$("#table").append("<input type='hidden' value='"+data+"' name='adduserid'>");
+    		}
     </script>
 	
 </body>
