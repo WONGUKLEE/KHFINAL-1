@@ -313,7 +313,7 @@
                 <div class="shlef-button-title" style="color:rgb(255, 171, 92)"><i class="fas fa-pen"></i>&nbsp Team Board</div>
                 <div class="shelf-button-contents">
                     <div class="shelf-button-contents-label">General</div>
-                    <div class="shelf-button-contents-select" style="background-color:rgb(255, 171, 92); color:white;">All</div>
+                    <div class="shelf-button-contents-select" style="background-color:rgb(255, 171, 92); color:white;" onclick = "List();">All</div>
                     <div class="shelf-button-contents-select" onclick = "myList();">Me</div>
 
                     <div class="shelf-button-contents-label">Category</div>
@@ -344,7 +344,7 @@
                 </div>
                 <div class="boardlist">
                 	<c:choose>
-                		<c:when test="${empty list || empty mylist}">
+                		<c:when test="${empty list and empty mylist}">
                 			<div>
                 				<div>게시글이 없습니다.</div>
                 			</div>
@@ -352,7 +352,7 @@
                 		<c:otherwise>
 
                 			<c:forEach items = "${list}" var = "dto">
-                				<div class="card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
+                				<div class="list card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
 			                        <img class="thumbnail" src="images/boardtest1.jpeg">
 			                        <div class="board-title">${dto.b_title }</div>
 			                        <div class="board-content">${dto.b_content}</div>
@@ -367,8 +367,18 @@
 		                    	</div>                			
                 			</c:forEach>
                 			<c:forEach items = "${mylist}" var = "dto">
-                				<div class = "card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
-                				
+                				<div class = "mylist card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
+                					<img class="thumbnail" src="images/boardtest1.jpeg">
+			                        <div class="board-title">${dto.b_title }</div>
+			                        <div class="board-content">${dto.b_content}</div>
+			                        <div class="board-info">
+			                            <span>
+			                                <img src="images/profile.svg"
+			                            	style="border-radius: 50%;" height="30px">
+			                            </span>
+			                            <span class="board-writer">${b_userid}</span>
+			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
+			                        </div>
                 				</div>
                 			</c:forEach>
                 		</c:otherwise>
@@ -382,10 +392,20 @@
     <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     	$(function(){
-    		
-    		
-    		
+    		$(".mylist").hide();
     	});
+    	
+   		function myList(){
+   			$(".list").hide();
+   			$(".mylist").show();
+   			
+   		};
+   		
+   		function List(){
+   			$(".mylist").hide();
+   			$(".list").show();
+   		}
+    	
     
     </script>
     
