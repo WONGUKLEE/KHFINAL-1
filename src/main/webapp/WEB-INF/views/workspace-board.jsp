@@ -350,17 +350,17 @@
                 			</div>
                 		</c:when>
                 		<c:otherwise>
-                			<c:forEach items = "${list}" var = "dto">
+                			<c:forEach items = "${list}" var ="dto">
                 				<div class="card card-2">
 			                        <img class="thumbnail" src="images/boardtest1.jpeg">
-			                        <div class="board-title">Web scrapers tools</div>
-			                        <div class="board-content">It is a method of extracting data from the internet. People use this process to find and store information on their servers, like what we're doing right now.</div>
+			                        <div class="board-title"></div>
+			                        <div class="board-content"></div>
 			                        <div class="board-info">
 			                            <span>
-			                                <img src="images/profile.svg"
+			                                <img src="images/profile.svg">
 			                            style="border-radius: 50%;" height="30px">
 			                            </span>
-			                            <span class="board-writer">by zzanggu</span>
+			                            <span class="board-writer"></span>
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
 		                    	</div>
@@ -502,6 +502,7 @@
                 }
             }
         }
+    
     </script>
 	
 </body>
