@@ -22,6 +22,7 @@
     }
     #adduserList{
     	font-size : 10px;
+    	color : gray;
     }
     
     </style>
