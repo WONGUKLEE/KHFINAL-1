@@ -19,7 +19,7 @@
  	 <select id = "mylist" parameterType = "teamDto" resultType = "boardDto">
 	  	SELECT *
 	  	FROM BOARD
-	  	WHERE B_USERID = #{b_userid} AND B_TEAMCODE = #{b_teamcode} AND B_CATEGORY = "개인"
+	  	WHERE B_USERID = #{userid} AND B_TEAMCODE = #{teamcode} AND B_CATEGORY = '개인'
 	  	ORDER BY B_NO DESC
 	  	
     </select>
