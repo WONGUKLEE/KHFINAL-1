@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.khfinal.devstairs.user.dao.TeamDao;
+import com.khfinal.devstairs.user.dto.InviteDto;
 import com.khfinal.devstairs.user.dto.TeamCodeDto;
 import com.khfinal.devstairs.user.dto.TeamDto;
 import com.khfinal.devstairs.user.dto.UserDto;
@@ -41,5 +42,11 @@ public class TeamBiz {
 	}
 	public List<UserDto> searchUser(String email,String userid){
 		return dao.searchUser(email,userid);
+	}
+	public int inviteUser(InviteDto dto) {
+		return dao.inviteUser(dto);
+	}
+	public int inviteDel(InviteDto dto) {
+		return dao.inviteDel(dto);
 	}
 }

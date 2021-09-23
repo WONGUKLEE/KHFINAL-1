@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.khfinal.devstairs.user.dao.UserDao;
+import com.khfinal.devstairs.user.dto.InviteTeamDto;
 import com.khfinal.devstairs.user.dto.TeamCodeDto;
 import com.khfinal.devstairs.user.dto.TeamDto;
 import com.khfinal.devstairs.user.dto.UserDto;
@@ -54,5 +55,8 @@ public class UserBiz {
 	}
 	public int AdminNameUpdate(Map<String,String> map) {
 		return dao.AdminNameUpdate(map);
+	}
+	public List<InviteTeamDto> inviteList(String userid){
+		return dao.inviteList(userid);
 	}
 }

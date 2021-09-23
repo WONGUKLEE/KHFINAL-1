@@ -20,6 +20,9 @@
     .nameConfirm{
     	color : green;
     }
+    #adduserList{
+    	font-size : 10px;
+    }
     
     </style>
 </head>
@@ -36,17 +39,17 @@
             </div>
             <h1>Build a workspace your team will love.</h1>
             <p></p>
-            <form action="makeWorkspace.do" method="get">
+            <form action="makeWorkspace.do" method="get" id="table">
 
                 <label class="form-label"><i class="fas fa-paper-plane"></i><strong> &nbspWhat do you want to call your teamworkspace?</strong></label>
                 <input id="workspaceName" type="text" placeholder="Workspace name" name="teamname" class="workspaceName">
                 <br>
                 <div id="teamnamechk"></div>
-                <label class="invite-email"><i class="fas fa-envelope"></i><strong> &nbspInvite people via email</strong></label>
+                <label class="invite-email"><i class="fas fa-envelope"></i><strong> &nbspInvite people via email</strong><span id="adduserList">&nbsp선택인원 : </span></label>
                 <input id="inviteemail" type="text" placeholder="E-mail" class="workspaceName">
-                <ui id="result">
+                <table id="result">
                 
-                </ui>
+                </table>
                 <div class="form-buttons">
                     <button type="button" class="button-cancel" onclick="location.href='start.do'">취소</button>
                     <button type="submit" class="button-confirm" id="submitbtn">확인</button>
@@ -99,7 +102,7 @@
     						if(data.length>0 && email.length>0){
     							for(i=0;i<data.length;i++){
 	    							$("#result").append(
-	    								"<li value="+data[i].userid+">"+data[i].userid +" / "+ data[i].username+"</li>"		
+	    								"<tr><td onclick='addUser($(this).text());'>"+data[i].userid+"</td><td> // 이름 : "+data[i].username+"</td></tr>"		
 	    							);
     							}
     							
@@ -117,6 +120,10 @@
     		
     		
     	});
+    		function addUser(data){
+    			$("#adduserList").append(data+" ");
+    			$("#table").append("<input type='hidden' value='"+data+"' name='adduserid'>");
+    		}
     </script>
 	
 </body>
