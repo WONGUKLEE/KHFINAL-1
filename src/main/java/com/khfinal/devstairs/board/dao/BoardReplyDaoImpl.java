@@ -23,7 +23,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 			list = sqlSession.selectList(NAMESPACE+"ReplyList",br_no);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("");
+			
 		}
 		
 		
@@ -37,14 +37,14 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 		
 		try {
 			
-			//res = sqlSession.ReplyWrite(NAMESPACE+"ReplyWrite",dto){
+			res = sqlSession.insert(NAMESPACE+"ReplyWrite",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("REPLYWRITE 에러");
+			System.out.println("ERROR : replywrite");
 		}
 		System.out.println(res);	
 	
-		return 0;
+		return res;
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 			res= sqlSession.update(NAMESPACE+"ReplyUpdate",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("REPLYUPDATE 에러");
+			System.out.println("ERROR: replyupdate");
 		}
 			System.out.println(res);
 			return res;
@@ -71,7 +71,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 			res=sqlSession.delete(NAMESPACE+"ReplyDelete",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("REPLYDELETE 에러");
+			System.out.println("ERROR: replydelete");
 			
 		}
 		

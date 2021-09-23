@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: nma21
+=======
+Built-By: jiyeon
+>>>>>>> f321402ad024f5b45444738b53266859aa452375
 Build-Jdk: 1.8.0_282
 Created-By: Maven Integration for Eclipse
 

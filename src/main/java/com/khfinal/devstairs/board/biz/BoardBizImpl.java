@@ -48,9 +48,9 @@ public class BoardBizImpl implements BoardBiz{
 	}
 
 	@Override
-	public int delete(int b_no) {
+	public int delete(BoardDto dto) {
 		
-		return dao.delete(b_no);
+		return dao.delete(dto);
 	}
 
 	

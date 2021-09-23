@@ -24,7 +24,7 @@ public interface BoardDao {
 	
 	public int update(BoardDto dto);
 	
-	public int delete(int b_no);
+	public int delete(BoardDto dto);
 	
 	public void plusCnt(int b_no);
 	

@@ -6,7 +6,8 @@ import com.khfinal.devstairs.board.dto.BoardReplyDto;
 
 public interface BoardReplyDao {
 	
-	String NAMESPACE="boardReply";
+	String NAMESPACE="boardReply.";
+	
 	public List<BoardReplyDto> ReplyList (int br_no);
 	
 	public int ReplyWrite(BoardReplyDto dto);

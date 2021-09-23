@@ -32,7 +32,7 @@
 	  	
  	</select>
  	
- 	<select id = "selectOne" parameterType = "int" resultType = "boardDto">
+ 	<select id = "selectone" parameterType = "int" resultType = "boardDto">
  		SELECT *
  		FROM BOARD
  		WHERE B_NO = #{b_no}
@@ -52,13 +52,13 @@
  		
  	</update>
 
-	<delete id = "delete" parameterType = "int">
+	<delete id = "delete" parameterType = "boardDto">
 		DELETE FROM BOARD
 		WHERE B_NO = #{b_no}
 		
 	</delete>
 	
-	<update id = "plusCnt" parameterType = "int">
+	<update id = "pluscnt" parameterType = "int">
 		UPDATE BOARD
 		SET B_READCNT = B_READCNT + 1
 		WHERE B_NO = #{b_no}
