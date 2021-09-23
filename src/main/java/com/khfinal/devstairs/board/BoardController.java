@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.khfinal.devstairs.board.biz.BoardBiz;
+import com.khfinal.devstairs.board.dto.BoardDto;
 
 @Controller
 public class BoardController {
@@ -30,31 +31,41 @@ public class BoardController {
 		
 	}
 	
-//	@RequestMapping("/boarddetail.do")
-//	public String detail() {
-//		//logger.info("boarddetail");
-//		
-//		return null;
-//		
-//	}
+	@RequestMapping("/boarddetail.do")
+	public String detail(Model model, int b_no) {
+		logger.info("boarddetail");
+		
+		model.addAttribute("dto", biz.selectOne(b_no));
+		
+		return "boarddetail";
+		
+	}
 	
-//	@RequestMapping("/writeform.do")
-//	public String writeForm() {
-//		//logger.info("writeform");
-//		
-//		return null;
-//		
-//	}
-//	
-//	@RequestMapping("/boardwrite.do")
-//	public String write() {
-//		//logger.info("boardwirte");
-//		
-//		return null;
-//		
-//	}
-//	
-//	
+	@RequestMapping("/writeform.do")
+	public String writeForm(Model model, int b_teamcode) {
+		logger.info("writeform");
+		
+		model.addAttribute("dto", b_teamcode);
+		
+		return "boardwrite";
+		
+	}
+	
+	@RequestMapping("/boardwrite.do")
+	public String write(BoardDto dto) {
+		logger.info("boardwrite");
+		
+		int res = biz.insert(dto);
+		
+		if(res > 0) {
+			return "redirect:boardlist.do?b_teamcode" + dto.getB_teamcode();
+		} else {
+			return "redirect:writeform.do";
+		}
+	
+	}
+	
+	
 //	@RequestMapping("/updateform.do")
 //	public String updateForm() {
 //		//logger.info("updateform");
@@ -71,60 +82,20 @@ public class BoardController {
 //		
 //	}
 //	
-//	@RequestMapping("/boarddetail.do")
-//	public String delete() {
-//		//logger.info("boarddetail");
-//		
-//		return null;
-//		
-//	}
-//	
-//	@RequestMapping("/replywrite.do")
-//	public String replyWrite() {
-//		//logger.info("replywrite");
-//		
-//		return null;
-//		
-//	}
-//	
-//	@RequestMapping("/replyupdate.do")
-//	public String replyUpdate() {
-//		//logger.info("replyupdate");
-//		
-//		return null;
-//		
-//	}
-//	
-//	@RequestMapping("/replydelete.do")
-//	public String replyDelete() {
-//		//logger.info("replydelete");
-//		
-//		return null;
-//	}
-//	
-//	
-//	@RequestMapping("/replyupdate")
-//	public String ReplyUpdate(BoardReplyDto dto) {
-//		System.out.println("index : " + dto.getBr_index() + " / content : " + dto.getBr_content());
-//		//brReplybiz.ReplyUpdate(dto);
-//
-//		return "redirect:detail.do?b_no=" + dto.getBr_no();
-//
-//	}
-//
-//	@RequestMapping("/replydelete")
-//	public String replydelete(BoardReplyDto dto, int b_no) {
-//		//brReplybiz.ReplyDelete(dto);
-//
-//		return "redirect:detail.do?b_no=" + b_no;
-//	}
-//	
-//	@RequestMapping("/replywrite")
-//	public String ReplyWrite(BoardReplyDto dto) {
-//		System.out.println("�슂泥� �꽆�뼱�솕�떎�떎 : " + dto.getBr_no() + "/ " + dto.getBr_userid() + " / " + dto.getBr_content());
-//		//brReplybiz.ReplyWrite(dto);
-//
-//		return "redirect:detail.do?b_no=" + dto.getBr_no();
-//
-//	}
+	@RequestMapping("/boarddelete.do")
+	public String delete(BoardDto dto) {
+		logger.info("boarddetail");
+		
+		int res = biz.delete(dto); 
+		
+		if(res > 0) {
+			return "redirect:boardlist.do?b_teamcode=" + dto.getB_teamcode();
+		} else {
+			return "redirect:boarddetail.do?b_no=" + dto.getB_no();
+		}
+		
+		
+		
+	}
+
 }

@@ -113,6 +113,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		try {
 			res = sqlSession.insert(NAMESPACE + "insert", dto);
+			System.out.println("insert 결과 :" + res);
 			
 		} catch (Exception e) {
 			System.out.println("[error] Insert");
@@ -138,11 +139,11 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int delete(int b_no) {
+	public int delete(BoardDto dto) {
 		int res = 0;
 		
 		try {
-			res = sqlSession.delete(NAMESPACE + "delete", b_no);
+			res = sqlSession.delete(NAMESPACE + "delete", dto);
 			
 		} catch (Exception e) {
 			System.out.println("[error] Delete");

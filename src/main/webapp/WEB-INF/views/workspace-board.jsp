@@ -23,7 +23,7 @@
         <nav class="navbar-fixed-top">
             <div class="workspace-title">
                 <span class="icon-home">
-                    <a href="#" class="alogo"><img id="homelogo" src="resources/images/logoicon.svg" alt="logo"></a>
+                    <a href="index.jsp" class="alogo"><img id="homelogo" src="resources/images/logoicon.svg" alt="logo"></a>
                 </span>
                 <a href="" class="workspace-title__logo">
                     <span class="workspace-image"><a href="#"><img id="teamimage" src="resources/images/testteamimage.png"
@@ -314,12 +314,12 @@
                 <div class="shelf-button-contents">
                     <div class="shelf-button-contents-label">General</div>
                     <div class="shelf-button-contents-select" style="background-color:rgb(255, 171, 92); color:white;">All</div>
-                    <div class="shelf-button-contents-select">Me</div>
+                    <div class="shelf-button-contents-select" onclick = "myList();">Me</div>
 
                     <div class="shelf-button-contents-label">Category</div>
-                    <div class="shelf-button-contents-select">Category A</div>
-                    <div class="shelf-button-contents-select">Category B</div>
-                    <div class="shelf-button-contents-select">Category C</div>
+                    <div class="shelf-button-contents-select" onclick = "type_meeting();">Meeting</div>
+                    <div class="shelf-button-contents-select" onclick = "type_code();">Code</div>
+                    <div class="shelf-button-contents-select" onclick = "type_etc();">Etc</div>
                 </div>
             </div>
             <div class="left-sidebar-toggle-close">
@@ -340,7 +340,7 @@
             <div class="content-view">
                 <div class="board-write">
                     <!-- <button class="btn-hover color-2"><i class="fas fa-pen" style="font-size: 1.5rem;"></i></button> -->
-                    <button class="btn-hover color-4"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
+                    <button class="btn-hover color-4" onclick = "location.href='boardwrite.do?b_teamcode=${list.b_teamcode}'"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
                 </div>
                 <div class="boardlist">
                 	<c:choose>
@@ -350,21 +350,31 @@
                 			</div>
                 		</c:when>
                 		<c:otherwise>
-                			<c:forEach items = "${list}" var ="dto">
-                				<div class="card card-2">
+
+                			<c:forEach items = "${list}" var = "dto">
+                				<div class="card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
 			                        <img class="thumbnail" src="images/boardtest1.jpeg">
 			                        <div class="board-title"></div>
 			                        <div class="board-content"></div>
+
 			                        <div class="board-info">
 			                            <span>
 			                                <img src="images/profile.svg">
 			                            style="border-radius: 50%;" height="30px">
 			                            </span>
+
 			                            <span class="board-writer"></span>
+
+			                            <span class="board-writer">${dto.b_userid }</span>
+
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
-		                    	</div>
-                			
+		                    	</div>                			
+                			</c:forEach>
+                			<c:forEach items = "${mylist}" var = "dto">
+                				<div class = "" onclick = "">
+                				
+                				</div>
                 			</c:forEach>
                 		</c:otherwise>
                 	</c:choose>
@@ -373,6 +383,17 @@
         </div>
 
     </div>
+    
+    <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    	$(function(){
+    		
+    		
+    		
+    	});
+    
+    </script>
+    
     <script>
         var left_sidebar = document.getElementById('left-sidebar-toggle');
         var left_sitebar_open = document.getElementById('left-sidebar-toggle-open');
