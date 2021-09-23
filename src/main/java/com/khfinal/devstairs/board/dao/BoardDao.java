@@ -10,7 +10,7 @@ public interface BoardDao {
 	
 	public List<BoardDto> selectList(int b_teamcode);
 	
-	public List<BoardDto> myList(BoardDto dto);
+	public List<BoardDto> myList(String b_userid, int b_teamcode);
 	
 	public List<BoardDto> meetingList(BoardDto dto);
 
@@ -24,7 +24,7 @@ public interface BoardDao {
 	
 	public int update(BoardDto dto);
 	
-	public int delete(BoardDto dto);
+	public int delete(int b_no);
 	
 	public void plusCnt(int b_no);
 	

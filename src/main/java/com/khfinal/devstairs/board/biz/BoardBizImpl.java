@@ -20,14 +20,12 @@ public class BoardBizImpl implements BoardBiz{
 		return dao.selectList(b_teamcode);
 	}
 
-
 	@Override
-	public List<BoardDto> myList(BoardDto dto) {
+	public List<BoardDto> myList(String b_userid, int b_teamcode) {
+	
+		return dao.myList(b_userid, b_teamcode);
 		
-		return dao.myList(dto);
 	}
-
-
 
 	@Override
 	public BoardDto selectOne(int b_no) {
@@ -48,10 +46,13 @@ public class BoardBizImpl implements BoardBiz{
 	}
 
 	@Override
-	public int delete(BoardDto dto) {
+	public int delete(int b_no) {
 		
-		return dao.delete(dto);
+		return dao.delete(b_no);
 	}
+
+
+
 
 	
 }

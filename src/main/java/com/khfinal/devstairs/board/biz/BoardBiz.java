@@ -8,7 +8,7 @@ public interface BoardBiz {
 
 	public List<BoardDto> selectList(int b_teamcode);
 	
-	public List<BoardDto> myList(BoardDto dto);
+	public List<BoardDto> myList(String b_userid, int b_teamcode);
 	
 	public BoardDto selectOne(int b_no);
 	
@@ -16,7 +16,7 @@ public interface BoardBiz {
 	
 	public int update(BoardDto dto);
 	
-	public int delete(BoardDto dto);
+	public int delete(int b_no);
 
 	
 }
