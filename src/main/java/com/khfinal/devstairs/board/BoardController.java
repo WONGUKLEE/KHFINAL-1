@@ -42,10 +42,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/writeform.do")
-	public String writeForm(Model model, int b_teamcode) {
+	public String writeForm() {
 		logger.info("writeform");
 		
-		model.addAttribute("dto", b_teamcode);
 		
 		return "boardwrite";
 		
