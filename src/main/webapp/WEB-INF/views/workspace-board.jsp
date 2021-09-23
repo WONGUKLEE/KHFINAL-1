@@ -340,11 +340,11 @@
             <div class="content-view">
                 <div class="board-write">
                     <!-- <button class="btn-hover color-2"><i class="fas fa-pen" style="font-size: 1.5rem;"></i></button> -->
-                    <button class="btn-hover color-4" onclick = "location.href='boardwrite.do?b_teamcode=${list.b_teamcode}'"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
+                    <button class="btn-hover color-4" onclick = "location.href='writeform.do?b_teamcode=${b_teamcode}'"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
                 </div>
                 <div class="boardlist">
                 	<c:choose>
-                		<c:when test="${empty list}">
+                		<c:when test="${empty list || empty mylist}">
                 			<div>
                 				<div>게시글이 없습니다.</div>
                 			</div>
@@ -354,25 +354,20 @@
                 			<c:forEach items = "${list}" var = "dto">
                 				<div class="card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
 			                        <img class="thumbnail" src="images/boardtest1.jpeg">
-			                        <div class="board-title"></div>
-			                        <div class="board-content"></div>
-
+			                        <div class="board-title">${dto.b_title }</div>
+			                        <div class="board-content">${dto.b_content}</div>
 			                        <div class="board-info">
 			                            <span>
-			                                <img src="images/profile.svg">
-			                            style="border-radius: 50%;" height="30px">
+			                                <img src="images/profile.svg"
+			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
-
-			                            <span class="board-writer"></span>
-
-			                            <span class="board-writer">${dto.b_userid }</span>
-
+			                            <span class="board-writer">${b_userid}</span>
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
 		                    	</div>                			
                 			</c:forEach>
                 			<c:forEach items = "${mylist}" var = "dto">
-                				<div class = "" onclick = "">
+                				<div class = "card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
                 				
                 				</div>
                 			</c:forEach>

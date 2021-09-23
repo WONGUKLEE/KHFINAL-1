@@ -71,7 +71,7 @@
 <body>
 	<h2>글 작성</h2>
 	<form:form method = "post" action = "boardwrite.do" >
-		<input type = "hidden" name = "b_teamcode" value = "${dto.b_teamcode}">
+		<input type = "hidden" name = "b_teamcode" value = "${b_teamcode}">
 		<div>
 			<select name = "b_category">
 				<option value = "">공개 범위 선택</option>
@@ -91,14 +91,14 @@
 			<input type = "text" name = "b_title">
 		</div>
 		<div>
-			<input type = "text" name = "b_userid">
+			<input type = "text" name = "b_userid" value = "${b_userid}">
 		</div>
 		<div>
 			<textarea id = "summernote" name = "b_content"></textarea>
 		</div>
 
 		<input type = "button" value = "작성 완료" onclick = "goWrite(this.form)">
-		<input type = "button" value = "취소" onclick = "location.href='boardlist.do?b_teamcode=${dto.b_teamcode}'">
+		<input type = "button" value = "취소" onclick = "location.href='boardlist.do?b_teamcode=${b_teamcode}'">
 	
 	</form:form>
 	
