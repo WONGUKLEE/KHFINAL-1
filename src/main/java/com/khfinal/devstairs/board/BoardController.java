@@ -57,6 +57,7 @@ public class BoardController {
 		
 		model.addAttribute("b_userid", dto.getUserid());
 		model.addAttribute("b_teamcode", b_teamcode);
+
 		
 		return "boardwrite";
 		

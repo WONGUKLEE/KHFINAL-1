@@ -35,7 +35,7 @@
  	<select id = "selectone" parameterType = "int" resultType = "boardDto">
  		SELECT *
  		FROM BOARD
- 		WHERE B_NO = #{b_no}
+ 		WHERE B_NO = #{b_no} and B_TEAMCODE=#{b_teamcode}
  		
  	</select>
  	 	
