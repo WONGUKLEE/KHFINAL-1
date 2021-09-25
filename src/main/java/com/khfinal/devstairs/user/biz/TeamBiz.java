@@ -49,4 +49,10 @@ public class TeamBiz {
 	public int inviteDel(InviteDto dto) {
 		return dao.inviteDel(dto);
 	}
+	public int teamUserDel(String userid, int teamcode) {
+		return dao.teamUserDel(userid, teamcode);
+	}
+	public int workspaceDel(int teamcode) {
+		return dao.workspaceDel(teamcode);
+	}
 }

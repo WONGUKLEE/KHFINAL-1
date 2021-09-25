@@ -214,7 +214,18 @@ public class UserDao {
 		
 		return list;
 	}
-	
+	//회원탈퇴 메소드
+	public int secession(String userid) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(namespace+"secession",userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 	
 	
 }

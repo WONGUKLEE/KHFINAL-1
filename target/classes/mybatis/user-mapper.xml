@@ -50,4 +50,8 @@
   	<delete id="testdelete" parameterType="userDto">
   		DELETE FROM USERTB WHERE USERID=#{userid}
   	</delete>
+  	<!-- 회원탈퇴 -->
+  	<delete id="secession" parameterType="String">
+  		DELETE FROM USERTB WHERE USERID=#{userid}
+  	</delete>
   </mapper>

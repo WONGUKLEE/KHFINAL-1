@@ -59,4 +59,7 @@ public class UserBiz {
 	public List<InviteTeamDto> inviteList(String userid){
 		return dao.inviteList(userid);
 	}
+	public int secession(String userid) {
+		return dao.secession(userid);
+	}
 }
