@@ -151,10 +151,10 @@
 		<form action = "replywrite.do" method = "post">
 		<input type = "hidden" name = "br_no" value = "${dto.b_no }">
 		<input type = "hidden" name = "br_teamcode" value = "${dto.b_teamcode }">
-			<input type = "text" name = "br_userid" value ="${dto.b_userid }">
+			<input type = "text" name = "br_userid" value ="${b_userid }">
 			<br>
 			<div>
-				<textarea rows = "5" cols = "50" id = "br_content" name = "br_content"></textarea>
+				<textarea rows = "5" cols = "50" id = "br_content" name = "br_content" required></textarea>
 				<span id = "main_content_cnt"></span>
 			</div>
 			
@@ -219,10 +219,12 @@
 				    </script>
 					
 					<div class = "btns">
-						<button class = "replybtn reply_update">수정</button>
-						<input type ="button" value = "삭제" class = "replybtn reply_delete" onclick = "location.href='replydelete.do?br_index=${reply.br_index}&b_no=${dto.b_no}'">
-						<button class = "replybtn reply_update_done" style = "display:none">완료</button>
-						<button class = "replybtn reply_update_cancel" style = "display:none">취소</button>
+						<c:if test = "${b_userid == reply.br_userid}">
+							<button class = "replybtn reply_update">수정</button>
+							<input type ="button" value = "삭제" class = "replybtn reply_delete" onclick = "location.href='replydelete.do?br_index=${reply.br_index}&b_no=${dto.b_no}'">
+							<button class = "replybtn reply_update_done" style = "display:none">완료</button>
+							<button class = "replybtn reply_update_cancel" style = "display:none">취소</button>						
+						</c:if>
 					</div>
 					
 				</div>

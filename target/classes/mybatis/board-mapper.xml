@@ -10,15 +10,13 @@
  		FROM BOARD
  		WHERE B_TEAMCODE = #{b_teamcode}
  		ORDER BY B_NO DESC
- 		
  	</select>
  	
  	 <select id = "mylist" parameterType = "teamDto" resultType = "boardDto">
 	  	SELECT *
 	  	FROM BOARD
 	  	WHERE B_USERID = #{userid} AND B_TEAMCODE = #{teamcode} AND B_CATEGORY = '개인'
-	  	ORDER BY B_NO DESC
-	  	
+	  	ORDER BY B_NO DESC	
     </select>
  	
  	<select id = "writetype" parameterType ="categoryDto" resultType = "boardDto">
@@ -37,7 +35,6 @@
  	<insert id = "insert" parameterType = "boardDto">
  		INSERT INTO BOARD
  		VALUES (BOARD_NUM.NEXTVAL, #{b_userid}, #{c_no}, #{b_teamcode}, #{b_title}, #{b_content}, SYSDATE, NULL, NULL, 0, #{b_category}, 0)
- 		
  	</insert>
  	
  	<update id = "update" parameterType = "boardDto">

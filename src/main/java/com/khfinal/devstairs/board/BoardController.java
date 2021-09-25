@@ -14,7 +14,7 @@ import com.khfinal.devstairs.board.biz.BoardBiz;
 import com.khfinal.devstairs.board.biz.BoardReplyBiz;
 import com.khfinal.devstairs.board.dto.BoardDto;
 import com.khfinal.devstairs.board.dto.BoardReplyDto;
-import com.khfinal.devstairs.board.dto.CategoryDto;
+//import com.khfinal.devstairs.board.dto.CategoryDto;
 import com.khfinal.devstairs.user.dto.UserDto;
 
 @Controller
@@ -53,13 +53,10 @@ public class BoardController {
 		String b_userid = dto.getUserid();
 		
 		
-		
 		model.addAttribute("b_userid", b_userid);
 		model.addAttribute("b_teamcode", b_teamcode);
 		//model.addAttribute("list", biz.selectList(b_teamcode));
 		//System.out.println(biz.selectList(b_teamcode).get(0).getB_title());
-		
-	
 		
 		 model.addAttribute("c_no", c_no); 
 		 System.out.println(c_no);
@@ -79,13 +76,9 @@ public class BoardController {
 		UserDto dto = (UserDto) session.getAttribute("login");
 		String b_userid = dto.getUserid();
 		
-		
 		model.addAttribute("b_userid", b_userid);
 		model.addAttribute("dto", biz.selectOne(b_no));
-		
-		
 		model.addAttribute("reply", brReplybiz.ReplyList(b_no));
-		
 		
 		return "boarddetail";
 		
@@ -100,7 +93,7 @@ public class BoardController {
 		model.addAttribute("b_userid", dto.getUserid());
 		model.addAttribute("b_teamcode", b_teamcode);
 
-		
+
 		return "boardwrite";
 		
 	}
