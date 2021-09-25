@@ -1,6 +1,8 @@
 package com.khfinal.devstairs.board;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,12 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khfinal.devstairs.board.biz.BoardBiz;
 import com.khfinal.devstairs.board.biz.BoardReplyBiz;
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.board.dto.BoardLikeDto;
 import com.khfinal.devstairs.board.dto.BoardReplyDto;
-//import com.khfinal.devstairs.board.dto.CategoryDto;
+import com.khfinal.devstairs.user.biz.TeamBiz;
 import com.khfinal.devstairs.user.dto.UserDto;
 
 @Controller
@@ -24,6 +29,8 @@ public class BoardController {
 	
 	@Autowired
 	private BoardBiz biz;
+	@Autowired
+	private TeamBiz teambiz;
 
 	@RequestMapping("/boardlist.do")
 	public String list(Model model, HttpSession session, int b_teamcode) {
@@ -31,13 +38,15 @@ public class BoardController {
 		
 		UserDto dto = (UserDto) session.getAttribute("login");
 		String b_userid = dto.getUserid();
-	
 		
+		model.addAttribute("login", dto);
+		model.addAttribute("teaminfo", teambiz.teaminfo(b_teamcode));
 		model.addAttribute("b_userid", b_userid);
 		model.addAttribute("b_teamcode", b_teamcode);
 		model.addAttribute("list", biz.selectList(b_teamcode));
 		model.addAttribute("mylist", biz.myList(b_userid, b_teamcode));
-		
+		model.addAttribute("wishlist", biz.getWishList(dto.getUserid()));
+		System.out.println(biz.getWishList(dto.getUserid()));
 	
 		
 		 
@@ -192,6 +201,40 @@ public class BoardController {
 
 		return "redirect:boarddetail.do?b_no=" + b_no;
 	}
+	
+	@RequestMapping(value="/wishadd.do",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> wishadd(int b_no,HttpSession session){
+		Map<String,Boolean> map = new HashMap<String, Boolean>();
+		UserDto dto = (UserDto) session.getAttribute("login");
+		boolean check = false;
+		
+		int res = biz.wishadd(new BoardLikeDto(dto.getUserid(),b_no));
+		if(res>0) {
+			check=true;
+		}
+		
+		map.put("check", check);
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/wishdel.do",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> wishdel(int b_no,HttpSession session){
+		Map<String,Boolean> map = new HashMap<String, Boolean>();
+		UserDto dto = (UserDto) session.getAttribute("login");
+		boolean check = false;
+		
+		int res = biz.wishdel(new BoardLikeDto(dto.getUserid(),b_no));
+		if(res>0) {
+			check=true;
+		}
+		
+		map.put("check", check);
+		return map;
+	}
+ 	
 
 
 }

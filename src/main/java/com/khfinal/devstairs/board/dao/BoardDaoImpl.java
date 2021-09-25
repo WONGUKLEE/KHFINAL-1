@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.board.dto.BoardLikeDto;
 import com.khfinal.devstairs.board.dto.CategoryDto;
 import com.khfinal.devstairs.user.dto.TeamDto;
 
@@ -151,5 +152,45 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		
 	}
+
+	@Override
+	public int wishadd(BoardLikeDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE+"wishadd",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<BoardLikeDto> getWishList(String userid) {
+		List<BoardLikeDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE+"wishList",userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int wishdel(BoardLikeDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE+"wishdel",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	
+	
 
 }

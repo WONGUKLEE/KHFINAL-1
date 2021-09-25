@@ -3,6 +3,7 @@ package com.khfinal.devstairs.board.biz;
 import java.util.List;
 
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.board.dto.BoardLikeDto;
 import com.khfinal.devstairs.board.dto.CategoryDto;
 
 public interface BoardBiz {
@@ -21,7 +22,9 @@ public interface BoardBiz {
 	
 	public int delete(int b_no);
 	
+	public int wishadd(BoardLikeDto dto);
 
-
+	public List<BoardLikeDto> getWishList(String userid);
 	
+	public int wishdel(BoardLikeDto dto);
 }

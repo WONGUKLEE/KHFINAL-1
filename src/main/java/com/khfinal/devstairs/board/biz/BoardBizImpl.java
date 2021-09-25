@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.khfinal.devstairs.board.dao.BoardDao;
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.board.dto.BoardLikeDto;
 
 @Service
 public class BoardBizImpl implements BoardBiz{
@@ -56,6 +57,21 @@ public class BoardBizImpl implements BoardBiz{
 	public int delete(int b_no) {
 		
 		return dao.delete(b_no);
+	}
+
+	@Override
+	public int wishadd(BoardLikeDto dto) {
+		return dao.wishadd(dto);
+	}
+
+	@Override
+	public List<BoardLikeDto> getWishList(String userid) {
+		return dao.getWishList(userid);
+	}
+
+	@Override
+	public int wishdel(BoardLikeDto dto) {
+		return dao.wishdel(dto);
 	}
 
 	

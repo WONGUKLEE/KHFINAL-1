@@ -31,11 +31,25 @@
  		FROM BOARD
  		WHERE B_NO = #{b_no}
  	</select>
- 	 	
+ 	
+ 	<select id="wishList" parameterType="String" resultType="boardlikeDto">
+ 		SELECT * FROM BOARD_LIKE WHERE BL_USERID=#{userid}
+ 	</select>
+ 	
  	<insert id = "insert" parameterType = "boardDto">
  		INSERT INTO BOARD
  		VALUES (BOARD_NUM.NEXTVAL, #{b_userid}, #{c_no}, #{b_teamcode}, #{b_title}, #{b_content}, SYSDATE, NULL, NULL, 0, #{b_category}, 0)
  	</insert>
+ 	
+ 	<insert id="wishadd" parameterType="boardlikeDto">
+ 		INSERT INTO BOARD_LIKE
+ 		VALUES(#{bl_userid},#{bl_no})
+ 	</insert>
+ 	<delete id="wishdel" parameterType="boardlikeDto">
+ 		DELETE FROM BOARD_LIKE
+ 		WHERE BL_USERID=#{bl_userid} AND BL_NO=#{bl_no}
+ 	</delete>
+ 	
  	
  	<update id = "update" parameterType = "boardDto">
  		UPDATE BOARD
@@ -56,6 +70,9 @@
 		WHERE B_NO = #{b_no}
 		
 	</update>
+	
+	
+	
  
  
  </mapper>

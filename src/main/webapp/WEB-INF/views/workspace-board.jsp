@@ -32,7 +32,10 @@
                 <div class="workspace-name">
                     <!-- <span id="selected-team-title" onclick="team_toggle()"> -->
                     <span id="selected-team-title">
-                        <h3>TeamName <i class="fas fa-chevron-down" style="font-size: 0.6rem; margin-left: 10px;"></i>
+                        <h3>${teaminfo.teamname } 
+                        <c:if test="${teaminfo.admin eq login.username }">
+	                        <i class="fas fa-chevron-down" style="font-size: 0.6rem; margin-left: 10px;"></i>
+                        </c:if>
                         </h3>
                     </span>
                 </div>
@@ -77,29 +80,29 @@
                 </div>
             </div>
         </nav>
-
-        <div id="dropdown-team">
-            <ul>
-                <li><span id="workspace_setting"><i class="fas fa-cog"
-                            style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp Workspace
-                        Settings</span>
-                </li>
-                <!-- <li><span onclick="team_modal_open();"><i class="fas fa-cog"
-                            style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp Workspace Settings</span>
-                </li> -->
-                <li><span><i class="fas fa-user-plus"
-                            style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp Invite new
-                        members</span>
-                </li>
-            </ul>
-        </div>
-
+		<c:if test="${teaminfo.admin eq login.username }">
+	        <div id="dropdown-team">
+	            <ul>
+	                <li><span id="workspace_setting"><i class="fas fa-cog"
+	                            style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp Workspace
+	                        Settings</span>
+	                </li>
+	                <!-- <li><span onclick="team_modal_open();"><i class="fas fa-cog"
+	                            style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp Workspace Settings</span>
+	                </li> -->
+	                <li><span><i class="fas fa-user-plus"
+	                            style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp Invite new
+	                        members</span>
+	                </li>
+	            </ul>
+	        </div>
+		</c:if>
         <div id="dropdown-user">
             <ul>
                 <li><span onclick="user_setting();"><i class="fas fa-cog"
                             style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp User Settings</span>
                 </li>
-                <li><span><a href="index.html"><i class="fas fa-sign-out-alt"
+                <li><span><a href="#" onclick="logout();"><i class="fas fa-sign-out-alt"
                                 style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp Logout</a></span>
                 </li>
             </ul>
@@ -152,7 +155,7 @@
                 </div>
             </div>
         </div>
-
+		
         <div id="update_password_modal" class="modal2">
             <div class="modal-content">
                 <span id="update_password_close">&times;</span>
@@ -289,11 +292,11 @@
 
 
         <nav class="navbar-fixed-left">
-            <a href="workspace-home.html" class="shelf-button--home"><i class="fas fa-home"
+            <a href="workspace.do?teamcode=${b_teamcode }" class="shelf-button--home"><i class="fas fa-home"
                     style="font-size: 1rem; color:rgb(255, 248, 248);"></i></a>
             <a href="workspace-chat.html" class="shelf-button--channel"><i class="fas fa-comment"
                     style="font-size: 1rem; color:rgb(255, 248, 248);"></i></a>
-            <a href="workspace-board.html" class="shelf-button--board" style="background-color:rgb(255, 171, 92)"><i class="fas fa-pen"
+            <a href="boardlist.do?b_teamcode=${teaminfo.teamcode }" class="shelf-button--board" style="background-color:rgb(255, 171, 92)"><i class="fas fa-pen"
                     style="font-size: 1rem; color:rgb(255, 248, 248);"></i></a>
             <a href="workspace-calendar.html" class="shelf-button--calendar"><i class="fas fa-calendar-alt"
                     style="font-size: 1rem; color:rgb(255, 248, 248);"></i></a>
@@ -357,11 +360,25 @@
 			                        <div class="board-content">${dto.b_content}</div>
 			                        <div class="board-info">
 			                            <span>
-			                                <img src="images/profile.svg"
+			                                <img src="resources/images/profile.svg"
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
 			                            <span class="board-writer">${dto.b_userid}</span>
-			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
+			                            <c:choose>
+				                            <c:when test="${empty wishlist }">
+				                            	<span class="board-star" onclick="addwish('${dto.b_no}');"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
+				                            </c:when>
+				                            <c:otherwise>
+					                            <c:forEach items="${wishlist }" var="wishdto">
+					                            	<c:if test="${wishdto.bl_no eq dto.b_no }">
+					                            		<span class="board-star" onclick="delwish('${dto.b_no}');"><i class="fas fa-star" style="font-size: 17px; color:rgb(255, 255, 0);"></i></span>
+					                            	</c:if>
+					                            	<c:if test="${wishdto.bl_no ne dto.b_no }">
+					                            		<span class="board-star" onclick="addwish('${dto.b_no}');"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
+					                            	</c:if>
+					                            </c:forEach>
+				                            </c:otherwise>
+			                            </c:choose>
 			                        </div>
 		                    	</div>                			
                 			</c:forEach>
@@ -372,7 +389,7 @@
 			                        <div class="board-content">${dto.b_content}</div>
 			                        <div class="board-info">
 			                            <span>
-			                                <img src="images/profile.svg"
+			                                <img src="resources/images/profile.svg"
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
 			                            <span class="board-writer">${dto.b_userid}</span>
@@ -387,7 +404,7 @@
 			                        <div class="board-content">${dto.b_content}</div>
 			                        <div class="board-info">
 			                            <span>
-			                                <img src="images/profile.svg"
+			                                <img src="resources/images/profile.svg"
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
 			                            <span class="board-writer">${dto.b_userid}</span>
@@ -698,8 +715,65 @@
                 }
             }
         }
-    
+        function logout(){
+        	if(confirm("로그아웃하시겠습니까?")){
+        		$.ajax({
+        			url:'logout.do',
+        			type:'get',
+        			dataType : 'json',
+        			success : function(msg){
+        				if(msg.check==true){
+	        				alert('로그아웃되었습니다');
+	        				location.href='index.jsp';
+        				}
+        			}
+        		});
+        	}
+        }
+        function addwish(data){
+        	var b_no = data;
+        	$.ajax({
+        		url:'wishadd.do',
+        		data:'b_no='+b_no,
+        		dataType:'json',
+        		type:'post',
+        		success:function(msg){
+        			if(msg.check==true){
+        				alert('찜성공');
+        				window.location.reload();
+        			}
+        		},
+        		error:function(){
+        			alert('에러');
+        		}
+        	});
+        }
+        
+        function delwish(data){
+        	var b_no = data;
+        	$.ajax({
+        		url:'wishdel.do',
+        		data:'b_no='+b_no,
+        		dataType:'json',
+        		type:'post',
+        		success:function(msg){
+        			if(msg.check==true){
+        				alert('찜삭제성공');
+        				window.location.reload();
+        			}
+        		},
+        		error:function(){
+        			alert('에러');
+        		}
+        	});
+        }
+        
+        
     </script>
-	
+	<style type="text/css">
+	.board-star{
+		z-index: 9;
+	}
+	</style>
 </body>
 </html>

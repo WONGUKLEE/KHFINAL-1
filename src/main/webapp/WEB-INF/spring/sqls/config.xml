@@ -12,6 +12,7 @@
   		<typeAlias type="com.khfinal.devstairs.board.dto.CategoryDto" alias="categoryDto"/>
   		<typeAlias type="com.khfinal.devstairs.user.dto.InviteDto" alias="inviteDto"/>
   		<typeAlias type="com.khfinal.devstairs.user.dto.InviteTeamDto" alias="inviteTeamDto"/>
+  		<typeAlias type="com.khfinal.devstairs.board.dto.BoardLikeDto" alias="boardlikeDto"/>
   		
   	</typeAliases>
   	<mappers>
