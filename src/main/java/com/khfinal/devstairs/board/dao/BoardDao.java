@@ -12,12 +12,6 @@ public interface BoardDao {
 	
 	public List<BoardDto> myList(String b_userid, int b_teamcode);
 	
-	public List<BoardDto> meetingList(BoardDto dto);
-
-	public List<BoardDto> codeList(BoardDto dto);
-	
-	public List<BoardDto> etcList(BoardDto dto);
-	
 	public BoardDto selectOne(int b_no);
 	
 	public int insert(BoardDto dto);

@@ -21,27 +21,27 @@
 </head>
 <body>
 	 <div id="wrapper">
-        <form method="post" action = "boardwrite.do">
-        	<input type = "hidden" name = "b_teamcode" value = "${b_teamcode}">
+        <form method="post" action = "boardupdate.do">
+        	<input type = "hidden" name = "b_no" value = "${dto.b_no}">
         	<input type = "hidden" name = "b_userid" value = "${b_userid}">
+        	<input type = "hidden" name = "b_teamcode" value = "${dto.b_teamcode }">
             <section>
-                <input type="text" id="input1" class="title" name = "b_title" placeholder="제목을 입력하세요" required>
+                <input type="text" id="input1" class="title" name = "b_title" value = "${dto.b_title}">
             </section>
             <div class="contentinfo">
                 <div class="taglist">
                     <span>공개 범위 :</span>
-                    <select class="select" name="b_category" required>
+                    <select class="select" name="b_category">
                         <option value="팀">팀</option>
                         <option value="개인">개인</option>
                     </select>
                 </div>
                 <div class="category">
                     <span>카테고리 :</span>
-                    <select class="select" name="c_no" required>
-                        <option value="" disabled selected>글 유형 선택</option>
+                    <select class="select" name="c_no">
                         <option value="1">회의록</option>
                         <option value="2">코드리뷰</option>
-                        <option value="3" selected>잡글</option>
+                        <option value="3">잡글</option>
                     </select>
                 </div>
                 <div class="tagcontainer">
@@ -53,11 +53,11 @@
                     </div>
                 </div>
             </div>
-            <textarea id="summernote" name="b_content" required></textarea>
+            <textarea id="summernote" name="b_content">${dto.b_content}</textarea>
             
             <div class="board-button">
-	            <button class="button-cancel" value="취소" onclick = "location.href='boardlist.do?b_teamcode=${b_teamcode}'">취소</button>
-	            <button type = "submit" class="button-confirm" value="글 등록">글 등록</button>
+	            <button class="button-cancel" value="취소" onclick = "location.href='boardlist.do?b_teamcode=${dto.b_teamcode}'">취소</button>
+	            <button type = "submit" class="button-confirm" value="글 수정">글 수정</button>
 	        </div>
         </form>
 

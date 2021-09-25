@@ -20,8 +20,7 @@ public class BoardController {
 	
 	@Autowired
 	private BoardBiz biz;
-	//@Autowired
-	//private BoardReplyBiz brReplybiz;
+
 	@RequestMapping("/boardlist.do")
 	public String list(Model model, HttpSession session, int b_teamcode) {
 		logger.info("boardlist");
@@ -40,9 +39,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boarddetail.do")
-	public String detail(Model model, int b_no) {
+	public String detail(Model model, HttpSession session ,int b_no) {
 		logger.info("boarddetail");
 		
+		UserDto dto = (UserDto) session.getAttribute("login");
+		String b_userid = dto.getUserid();
+		
+		model.addAttribute("b_userid", b_userid);
 		model.addAttribute("dto", biz.selectOne(b_no));
 		
 		return "boarddetail";
@@ -78,22 +81,32 @@ public class BoardController {
 	}
 	
 	
-//	@RequestMapping("/updateform.do")
-//	public String updateForm() {
-//		//logger.info("updateform");
-//		
-//		return null;
-//		
-//	}
-//	
-//	@RequestMapping("/boardupdate.do")
-//	public String update() {
-//		//logger.info("boardupdate");
-//		
-//		return null;
-//		
-//	}
-//	
+	@RequestMapping("/updateform.do")
+	public String updateForm(Model model, int b_no) {
+		logger.info("updateform");
+		
+		model.addAttribute("dto", biz.selectOne(b_no));
+		
+		return "boardupdate";
+		
+	}
+	
+	@RequestMapping("/boardupdate.do")
+	public String update(BoardDto dto) {
+		logger.info("boardupdate");
+		
+		int res = biz.update(dto);
+		
+		if(res > 0) {
+			return "redirect:boardlist.do?b_teamcode=" + dto.getB_teamcode();
+		} else {
+			return "redriect:boarddetail.do?b_no=" + dto.getB_no();
+		}
+		
+		
+		
+	}
+	
 	@RequestMapping("/boarddelete.do")
 	public String delete(int b_no, int b_teamcode) {
 		logger.info("boarddetail");

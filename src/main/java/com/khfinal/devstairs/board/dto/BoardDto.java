@@ -19,12 +19,12 @@ public class BoardDto {
 	private String b_category;
 	private int b_likecnt;
 	
-	//湲곕낯 硫붿냼�뱶
+	//기본 메소드
 	public BoardDto() {
 		super();
 	}
 
-	//留ㅺ컻蹂��닔 硫붿냼�뱶
+	//매개변수 메소드
 	public BoardDto(int b_no, String b_userid, int c_no, int b_teamcode, String b_title, String b_content, Date b_date,
 			String b_img, String b_file, int b_readcnt, String b_category, int b_likecnt) {
 		super();
