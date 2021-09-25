@@ -113,8 +113,8 @@
                     <button type="button" class="account-info-button">Account Information</button>
                     <c:if test="${login.authkey !='SOCIAL' }">
 	                    <button type="button" class="change-password-button" onclick="update_password_modal_open();">Change
-                    </c:if>
                         Password</button>
+                    </c:if>
                     <!-- <button type="button" class="change-password-button">Change Password</button> -->
                 </div>
                 <div class="profile-header">
@@ -166,28 +166,31 @@
                     <button type="button" class="change-password-button2">Change Password</button>
                 </div>
                 <div class="password-update-form">
-                    <form>
+                    <form action="passwordUpdate.do" method="post" id="passwordUpdateForm">
                         <h1>Update password 🔑</h1>
                         <label class="form-label">
                             <strong>Current password</strong>
                         </label>
-                        <input class="password-form" type="password" placeholder="Current password">
+                        <input class="password-form" type="password" placeholder="Current password" id="pastpw">
+                        <div id="pastpwcheck"></div>
                         <br>
                         <label class="form-label">
                             <strong>New password</strong>
                         </label>
-                        <input class="password-form" type="password" placeholder="New password">
+                        <input class="password-form" type="password" placeholder="New password" id="newpw1">
+                        <div id="newpw1check"></div>
                         <br>
                         <label class="form-label">
                             <strong>Confirm password</strong>
                         </label>
-                        <input class="password-form" type="password" placeholder="Confirm password">
+                        <input class="password-form" type="password" placeholder="Confirm password" id="newpw2" name="userpw">
+                        <div id="newpw2check"></div>
                         <br>
 
 
                         <div class="form-buttons2">
                             <button type="button" id="button-cancel2">취소</button>
-                            <button type="submit" class="button-confirm">확인</button>
+                            <button type="button" id="pwchangebtn" class="button-confirm">확인</button>
                         </div>
 		
                     </form>
@@ -357,7 +360,7 @@
         });
 
 
-       /* profile_btn.addEventListener('click',function(){
+        profile_btn.addEventListener('click',function(){
             if (dropdown_user.style.display === "none") {
                 dropdown_user.style.display = "block";
 
@@ -365,7 +368,7 @@
                 dropdown_user.style.display = "none";
             }
         });
-*/
+
         // profile_btn.addEventListener('blur', () => {
         //     dropdown_user.style.display = 'none';
         //     dropdown_team.style.display = 'none';
@@ -387,10 +390,14 @@
 
         profile_close.onclick = function () {
             profile_modal.style.display = "none";
+            $("#username").val('${login.username }');
+            $("#stmessage").val('${login.stmessage }');
         }
 
         button_cancel.onclick = function () {
             profile_modal.style.display = "none";
+            $("#username").val('${login.username }');
+            $("#stmessage").val('${login.stmessage }');
         }
 
         function update_password_modal_open() {
@@ -400,10 +407,22 @@
 
         update_password_close.onclick = function () {
             update_password_modal.style.display = "none";
+            $("#pastpw").val('');
+            $("#newpw1").val('');
+            $("#newpw2").val('');
+            $("#pastpwcheck").html('');
+            $("#newpw1check").html('');
+            $("#newpw2check").html('');
         }
 
         button_cancel2.onclick = function () {
             update_password_modal.style.display = "none";
+            $("#pastpw").val('');
+            $("#newpw1").val('');
+            $("#newpw2").val('');
+            $("#pastpwcheck").html('');
+            $("#newpw1check").html('');
+            $("#newpw2check").html('');
         }
 
         /*team_modal_close.onclick = function () {
@@ -568,7 +587,69 @@
      			});
      		}
      	}
-        
+        $(function(){
+        	$("#pwchangebtn").click(function(){
+        		var pastpw = $("#pastpw").val();
+        		console.log(pastpw);
+        		var newpw1 = $("#newpw1").val();
+        		var newpw2 = $("#newpw2").val();
+        		if(pastpw!=null&&pastpw!=""){
+        			$.ajax({
+        				url:'pastpwcheck.do',
+        				type:'post',
+        				data :'userpw='+pastpw,
+        				dataType:'json',
+        				success:function(msg){
+        					 $("#pastpwcheck").html('');
+       			             $("#newpw1check").html('');
+       			             $("#newpw2check").html('');
+        					if(msg.check==false){
+        						$("#pastpwcheck").html("<b style='font-size:12px;color:red'>기존 비밀번호가 일치하지 않습니다.</b>");
+        						$('#pastpw').focus();
+        					}else{
+        						$("#pastpwcheck").html('');
+        		        		if(newpw1==null||newpw1==""){
+        		        			$("#newpw1check").html("<b style='font-size:12px;color:red'>새로운 비밀번호를 입력해주세요</b>");
+        		        			$("#newpw1").focus();
+        		        		}else{
+        		        			$("#newpw1check").html('');
+        		        			if(newpw2==null||newpw2==""){
+            		        			$("#newpw2check").html("<b style='font-size:12px;color:red'>비밀번호를 다시 입력해주세요</b>");
+            		        			$("#newpw2").focus();
+            		        		}else{
+            		        			$("#newpw2check").html('');
+            		        			if(newpw1!=newpw2){
+            		        				$("#newpw2check").html("<b style='font-size:12px;color:red'>비밀번호가 일치하지 않습니다.</b>");
+            		        			}else{
+            		        				if(newpw1==pastpw){
+            		        					$("#newpw1check").html("<b style='font-size:12px;color:red'>기존의 비밀번호와 같은 비밀번호입니다.</b>");
+            		        				}else{
+            		        					$("#passwordUpdateForm").submit();
+            		        				}
+            		        			}
+            		        			
+            		        		}
+        		        		}
+        		        		
+        					}
+        				},
+        				error:function(){
+        					alert('에러');
+        				}
+        			});
+        		
+        		}else{
+        			$("#pastpwcheck").html("<b style='font-size:12px;color:red'>기존 비밀번호를 입력해주세요</b>");
+        		}
+        		
+        	});
+        	
+			$("#newpw1").keyup(function(){
+				
+			});
+        	
+        	
+        });
     </script>
 </body>
 </html>

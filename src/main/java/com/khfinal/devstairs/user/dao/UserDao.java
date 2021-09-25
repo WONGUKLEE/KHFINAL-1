@@ -227,5 +227,18 @@ public class UserDao {
 		return res;
 	}
 	
+	//비밀번호 변경메소드
+	public int pwUpdate(UserDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(namespace+"pwUpdate", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
 	
 }

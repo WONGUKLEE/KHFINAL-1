@@ -233,6 +233,48 @@ public class HomeController {
 		return map;
 	}
 	
+	@RequestMapping(value="/pastpwcheck.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> passwordCheck(String userpw, HttpSession session){
+		Map<String,Boolean> map = new HashMap<String, Boolean>();
+		boolean check = false;
+		UserDto login = (UserDto) session.getAttribute("login");
+		
+		if(passwordEncoder.matches(userpw, login.getUserpw())) {
+			check=true;
+		}
+		map.put("check", check);
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/passwordUpdate.do", method=RequestMethod.POST)
+	public String passwordUpdate(String userpw,HttpSession session,HttpServletResponse response) throws IOException{
+		UserDto login = (UserDto) session.getAttribute("login");
+		UserDto dto = new UserDto();
+		dto.setUserid(login.getUserid());
+		dto.setUserpw(passwordEncoder.encode(userpw));
+		int res = biz.pwUpdate(dto);
+		
+		if(res>0) {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out_equals = response.getWriter();
+            out_equals.println("<script>alert('비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.');</script>");
+            out_equals.flush();
+			return "../../index";
+		}else {
+			session.invalidate();
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out_equals = response.getWriter();
+            out_equals.println("<script>alert('비밀번호 변경 실패');</script>");
+            out_equals.flush();
+			return "../../index";
+		}
+		
+		
+	}
+	
+	
 	@RequestMapping("start.do")
 	public String success(HttpSession session,Model model) {
 		UserDto login = (UserDto) session.getAttribute("login");
