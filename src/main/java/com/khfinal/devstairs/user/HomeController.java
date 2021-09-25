@@ -285,7 +285,21 @@ public class HomeController {
 		
 	}
 	
-	
+	@RequestMapping(value="/secession.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> secession(HttpSession session){
+		Map<String,Boolean> map = new HashMap<String, Boolean>();
+		boolean check = false;
+		UserDto login = (UserDto) session.getAttribute("login");
+		int res = biz.secession(login.getUserid());
+		
+		if(res>0) {
+			check=true;
+		}
+		
+		map.put("check",check);
+		return map;
+	}
 	
 	
 	

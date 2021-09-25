@@ -147,5 +147,27 @@ public class TeamDao {
 			}
 			return res;
 		}
-		
+		// 팀원 추방메소드
+		public int teamUserDel(String userid, int teamcode) {
+			int res = 0;
+			TeamDto dto = new TeamDto(teamcode,userid);
+			try {
+				res =sqlSession.delete(namespace+"teamUserDel",dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return res;
+		}
+		//워크스페이스 삭제 메소드
+		public int workspaceDel(int teamcode) {
+			int res = 0;
+			
+			try {
+				res = sqlSession.delete(namespace+"workspaceDel",teamcode);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return res;
+		}
 }

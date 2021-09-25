@@ -80,7 +80,7 @@
         <c:if test="${teaminfo.admin eq login.username }">
 	        <div id="dropdown-team">
 	            <ul>
-	                <li><span id="workspace_setting"><i class="fas fa-cog"
+	                <li><span id="workspace_setting" onclick='team_modal_open();'><i class="fas fa-cog"
 	                            style="font-size: 0.9rem; color:rgb(138, 138, 138);"></i>&nbsp&nbsp Workspace
 	                        Settings</span>
 	                </li>
@@ -124,7 +124,8 @@
                         <h1>${login.username }</h1>
                         <p style="color:rgb(118, 200, 255)">${login.userid }</p>
                         <p>${login.stmessage } 🎈</p>
-                    </div>
+                        <p><input type="button" value="회원탈퇴" style="font-size:10px; color:gray; border:none;" onclick="secession();"></p>
+                    </div> 
                 </div>
 
                 <div class="profile-update-form">
@@ -197,7 +198,7 @@
 		</c:if>
         <div id="team_modal" class="modal3">
             <div class="modal-content">
-                <span id="team_modal_close">&times;</span>
+                <span id="team_modal_close" onclick="modal_close();">&times;</span>
                 <div class="team-setting-menu">
 
                 </div>
@@ -210,7 +211,7 @@
                 </div>
 
                 <div class="team-update-form">
-                    <form>
+                    <!--  <form>-->
                         <label class="form-label">
                             <strong>Workspace name</strong>
                         </label>
@@ -224,7 +225,9 @@
                                 <span class="teamperson">${dto.username } I &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                     ${dto.userid }&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                     &nbsp; </span>
-                                <button class="delete-user"><i class="fas fa-minus" style="color:red;"></i></button>
+                                    <c:if test="${teaminfo.admin != login.username }">
+		                                <button class="delete-user" onclick="delUser('${dto.userid}');"><i class="fas fa-minus" style="color:red;"></i></button>
+                                    </c:if>
                             </div>
                            </c:forEach>
                            <!-- 
@@ -237,11 +240,9 @@
                             -->
 
                         </div>
-                    </form>
+                    <!--  </form>-->
                     <div class="form-buttons">
-                        <button type="button" id="button-cancel">취소</button>
-                        <button type="submit" class="button-confirm">확인</button>
-                        <button type="button" class="delete-workspace">워크스페이스 삭제</button>
+                        <button type="button" class="delete-workspace" onclick="workDel();">워크스페이스 삭제</button>
                     </div>
                 </div>
             </div>
@@ -341,7 +342,7 @@
 
 
 
-        selected_team_title.addEventListener('click', () => {
+        selected_team_title.addEventListener('click', function() {
             if (dropdown_team.style.display === "none") {
                 dropdown_team.style.display = "block";
 
@@ -350,13 +351,13 @@
             }
         });
 
-        selected_team_title.addEventListener('blur', () => {
+        selected_team_title.addEventListener('blur', function(){
             dropdown_team.style.display = 'none';
             dropdown_user.style.display = 'none';
         });
 
 
-        profile_btn.addEventListener('click', () => {
+       /* profile_btn.addEventListener('click',function(){
             if (dropdown_user.style.display === "none") {
                 dropdown_user.style.display = "block";
 
@@ -364,7 +365,7 @@
                 dropdown_user.style.display = "none";
             }
         });
-
+*/
         // profile_btn.addEventListener('blur', () => {
         //     dropdown_user.style.display = 'none';
         //     dropdown_team.style.display = 'none';
@@ -405,8 +406,12 @@
             update_password_modal.style.display = "none";
         }
 
-        team_modal_close.onclick = function () {
+        /*team_modal_close.onclick = function () {
             team_modal.style.display = "none";
+        }
+        */
+        function modal_close(){
+        	team_modal.style.display = "none";
         }
 
         function profile_modal_open() {
@@ -414,15 +419,15 @@
             profile_modal.style.display = "block";
         }
 
-        // function team_modal_open() {
-        //     team_modal.style.display = "block";
-        //     dropdown_team.display = "none";
-        // }
+        function team_modal_open() {
+            team_modal.style.display = "block";
+            dropdown_team.style.display = "none";
+        }
 
-        workspace_setting.addEventListener('click', () => {
+/*        workspace_setting.addEventListener('click',function() {
             dropdown_team.style.display = "none";
             team_modal.style.display = "block";
-        });
+        }); */
 
         function left_sidebar_close_toggle_click() {
             left_sidebar.style.display = "none";
@@ -494,7 +499,75 @@
         	}
         }
         
-     
+        function secession(){
+        	if(confirm('정말로 탈퇴하시겠습니까?')){
+        		if(confirm('진짜 탈퇴하실건가요?')){
+	        		$.ajax({
+	        			url:'secession.do',
+	        			type:'post',
+	        			dataType:"json",
+	        			success:function(msg){
+	        				if(msg.check==true){
+	        					alert('Devstairs를 이용해주셔서 감사합니다. 안녕히가세용');
+	        					location.href='index.jsp';
+	        				}
+	        			},
+	        			error:function(){
+	        				
+	        			}
+	        		});
+        		}
+        	}
+        }
+        
+        function delUser(data){
+        	var userid = data;
+        	var teamcode = ${teaminfo.teamcode};
+        	
+        	var info = {
+        			'userid':userid,
+        			'teamcode':teamcode
+        	}
+        	if(confirm('이 유저를 추방시키겠습니까?')){
+        		$.ajax({
+        			url:'teamUserDel.do',
+        			type:'post',
+        			dataType:'json',
+        			data:JSON.stringify(info),
+        			contentType:'application/json',
+        			success:function(msg){
+        				if(msg.check==true){
+        					alert('추방되었습니다');
+        					window.location.reload();
+        				}
+        			},
+        			error:function(){
+        				
+        			}
+        		});
+        	}
+        }
+     	function workDel(){
+     		var teamcode = ${teaminfo.teamcode};
+     		
+     		if(confirm('이 워크스페이스를 삭제하시겠습니까?')){
+     			$.ajax({
+     				url:'workspaceDelete.do',
+     				type:'post',
+     				data:'teamcode='+teamcode,
+     				dataType:'json',
+     				success:function(msg){
+     					if(msg.check==true){
+     						alert('워크스페이스가 삭제되었습니다.');
+     						location.href='start.do';
+     					}
+     				},
+     				error:function(){
+     					
+     				}
+     			});
+     		}
+     	}
         
     </script>
 </body>
