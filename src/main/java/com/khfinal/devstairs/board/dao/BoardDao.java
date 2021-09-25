@@ -12,7 +12,7 @@ public interface BoardDao {
 	public List<BoardDto> selectList(int b_teamcode);
 	
 	public List<BoardDto> myList(String b_userid, int b_teamcode);
-	
+
 	public List<BoardDto> CategoryList(int c_no, String b_userid, int b_teamcode);
 
 	public BoardDto selectOne(int b_no);

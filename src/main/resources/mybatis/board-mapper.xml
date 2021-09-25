@@ -3,9 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-
- 
-
  <mapper namespace="board">
  	
  	<select id = "list" parameterType = "int" resultType = "boardDto">
@@ -28,15 +25,13 @@
 	  	SELECT *
 	  	FROM BOARD
 	  	WHERE C_NO = #{c_no} AND B_USERID=#{b_userid} AND B_TEAMCODE =#{b_teamcode} 
-	  	ORDER BY B_NO DESC
-	  	
+	  	ORDER BY B_NO DESC	  	
  	</select>
  	
  	<select id = "selectone" parameterType = "int" resultType = "boardDto">
  		SELECT *
  		FROM BOARD
- 		WHERE B_NO = #{b_no} 
- 		
+ 		WHERE B_NO = #{b_no}
  	</select>
  	 	
  	<insert id = "insert" parameterType = "boardDto">
@@ -47,7 +42,7 @@
  	
  	<update id = "update" parameterType = "boardDto">
  		UPDATE BOARD
- 		SET B_TITLE = #{b_title}, B_CONTENT = #{b_content}, B_CATEGORY = #{b_category}
+ 		SET B_TITLE = #{b_title}, B_CONTENT = #{b_content}, B_CATEGORY = #{b_category}, C_NO = #{c_no}
  		WHERE B_NO = #{b_no}
  		
  	</update>

@@ -6,35 +6,30 @@
 
 <mapper namespace="boardReply">
 
-	<select id="ReplyList" resultType="boardReplyDto">
+	<select id="ReplyList" parameterType = "teamDto" resultType="boardReplyDto">
  	SELECT * FROM BOARD_REPLY
- 	WHERE BR_NO=#{br_no}
- 	
- 	
+ 	WHERE BR_NO=#{br_no} 
+ 	ORDER BY BR_NO DESC
+	
  	</select>
  	
  
  	
- 	<insert id="ReplyWrite" parameterType="boardReplyDto">
- 	INSERT INTO BOARD_REPLY
- 	VALUES(BOARD_REPLY_NUM.NEXTVAL,#{br_no},#{br_userid},#{br_teamcode},#{br_content},SYSDATE)
- 	
- 	
+ 	<insert id="ReplyWrite"   parameterType="boardReplyDto">
+	 	INSERT INTO BOARD_REPLY
+	 	VALUES(BOARD_REPLY_NUM.NEXTVAL, #{br_no}, #{br_userid}, #{br_teamcode}, #{br_content}, SYSDATE)
  	</insert>
  	
  	<update id="ReplyUpdate" parameterType="boardReplyDto">
- 	UPDATE INTO BOARD_REPLY
- 	SET BR_CONTENT=#{br_content}
- 	WHERRE BR_INDEX=#{br_index}
- 	
- 	
+	 	UPDATE BOARD_REPLY
+	 	SET BR_CONTENT=#{br_content}
+	 	WHERE BR_INDEX=#{br_index} 
  	</update>
  	
  	
  	
  	<delete id="ReplyDelete" parameterType="int">
- 	DELETE INTO BOARD_REPLY
- 	WHERE BR_INDEX=#{br_index}
- 	
+	 	DELETE FROM BOARD_REPLY
+	 	WHERE BR_INDEX=#{br_index}	
  	</delete>
 </mapper>

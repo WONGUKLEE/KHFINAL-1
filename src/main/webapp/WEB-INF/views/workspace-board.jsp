@@ -340,10 +340,7 @@
             <div class="content-view">
                 <div class="board-write">
                     <!-- <button class="btn-hover color-2"><i class="fas fa-pen" style="font-size: 1.5rem;"></i></button> -->
-
-               
                     <button class="btn-hover color-4" onclick = "location.href='writeform.do?b_teamcode=${b_teamcode}'"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
-
                 </div>
                 <div class="boardlist">
                 	<c:choose>
@@ -363,7 +360,7 @@
 			                                <img src="images/profile.svg"
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
-			                            <span class="board-writer">${b_userid}</span>
+			                            <span class="board-writer">${dto.b_userid}</span>
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
 		                    	</div>                			
@@ -378,7 +375,7 @@
 			                                <img src="images/profile.svg"
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
-			                            <span class="board-writer">${b_userid}</span>
+			                            <span class="board-writer">${dto.b_userid}</span>
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
                 				</div>
@@ -393,7 +390,7 @@
 			                                <img src="images/profile.svg"
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
-			                            <span class="board-writer">${b_userid}</span>
+			                            <span class="board-writer">${dto.b_userid}</span>
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
                 				</div>
@@ -453,12 +450,46 @@
 			$(".categorylist ").hide();
 		});
 	 */
-		function type_meeting(){
-			$.ajax({
+		function List(){
+		 $.ajax({
 				url:"boardlist.do",
 				type:'get',
 				dataType: 'json',
-				
+				data: sendData,	
+				success : function(msg){
+					if(msg.check==true){
+						alert('전체');
+						location.href='boardlist.do';
+					}
+					
+				}
+			});	
+			
+		}
+	
+		function myList(){
+			 $.ajax({
+					url:"boardlist.do",
+					type:'get',
+					dataType: 'json',
+					data: sendData,	
+					success : function(msg){
+						if(msg.check==true){
+							alert('내글보기');
+							location.href='boardlist.do';
+						}
+						
+					}
+				});	
+			
+		}
+	 
+	 function type_meeting(){		
+			$.ajax({
+				url:"categorylist.do",
+				type:'get',
+				dataType: 'json',
+				data: sendData,	
 				success : function(msg){
 					if(msg.check==true){
 						alert('회의록');
@@ -471,9 +502,9 @@
 		
 		function type_code(){
 			$.ajax({
-				url:"boardlist.do",
+				url:"categorylist.do",
 				type:'get',
-				dataType: 'json',
+				dataType: 'json',				
 				success:function(msg1){
 					if(msg1.check==true){
 						alert('코드리뷰');
@@ -486,12 +517,12 @@
 		}
 		function type_etc(){
 			$.ajax({
-				url:"boardlist.do",
+				url:"categorylist.do",
 				type:'get',
 				dataType: 'json',
 				success:function(msg1){
 					if(msg1.check==true){
-						alert('코드리뷰');
+						alert('잡글');
 						location.href='boardlist.do';
 					}
 				}
@@ -501,12 +532,17 @@
 			
 		}
 		
-		function List(){
+/* 		function List(){
 			$(".mylist").hide();
 			$(".list").show();
 			$(".categorylist").hide();
 		}
-		
+	
+		function myList(){
+			$(".mylist").show();
+			$(".list").hide();
+			$(".categorylist").hide();
+		} */
 	function type_meeting(){
 		location.href='categorylist.do?c_no='+1+'&b_teamcode='+${b_teamcode};
 		
@@ -517,7 +553,7 @@
 		function type_code(){
 			location.href='categorylist.do?c_no='+2+'&b_teamcode='+${b_teamcode};
 			$(".categorylist").show();
-		$(".mylist").hide();
+			$(".mylist").hide();
 			$(".list").hide();
 			
 		}
@@ -526,9 +562,9 @@
 			location.href='categorylist.do?c_no='+3+'&b_teamcode='+${b_teamcode};
 
 			$(".categorylist").show();
-		$(".mylist").hide();
+			$(".mylist").hide();
 			$(".list").hide();
-	} 
+	}  
    		
     	
     </script>

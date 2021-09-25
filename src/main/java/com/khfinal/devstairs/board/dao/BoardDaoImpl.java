@@ -22,19 +22,23 @@ public class BoardDaoImpl implements BoardDao {
 		List<BoardDto> list =  new ArrayList<BoardDto>();
 		
 		try {
-			list = sqlSession.selectList(NAMESPACE + "list", b_teamcode);
+			if (list.size()==0) {
+				list = sqlSession.selectList(NAMESPACE + "list", b_teamcode);
+				System.out.println("selectList 결과 : " + list);
+			}
+
+			
 			
 		} catch (Exception e) {
 			System.out.println("[error] selectList");
 			e.printStackTrace();
 			
 		}
-		
 		return list;
+		
+		
 	}
 	
-	
-
 	@Override
 	public List<BoardDto> myList(String b_userid, int b_teamcode) {
 		List<BoardDto> list = null;
@@ -43,6 +47,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		try {
 			list = sqlSession.selectList(NAMESPACE + "mylist", dto);
+			System.out.println("myList 결과 : " + list);
 			
 		} catch (Exception e) {
 			System.out.println("[error] myList");
@@ -76,6 +81,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		try {
 			dto = sqlSession.selectOne(NAMESPACE + "selectone", b_no);
+			System.out.println("selectOne 결과 : " + dto);
 			
 		} catch (Exception e) {
 			System.out.println("[error] selectOne");
@@ -91,7 +97,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		try {
 			res = sqlSession.insert(NAMESPACE + "insert", dto);
-			System.out.println("insert 결과 :" + res);
+			System.out.println("insert 결과 : " + res);
 			
 		} catch (Exception e) {
 			System.out.println("[error] Insert");
@@ -107,6 +113,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		try {
 			res = sqlSession.update(NAMESPACE + "update", dto);
+			System.out.println("update 결과 : " + res);
 			
 		} catch (Exception e) {
 			System.out.println("[error] Update");
@@ -122,6 +129,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		try {
 			res = sqlSession.delete(NAMESPACE + "delete", b_no);
+			System.out.println("delete 결과 : " + res);
 			
 		} catch (Exception e) {
 			System.out.println("[error] Delete");
@@ -136,6 +144,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		try {
 			sqlSession.update(NAMESPACE + "pluscnt", b_no);
+			
 		} catch (Exception e) {
 			System.out.println("[error] plusCnt");
 			e.printStackTrace();

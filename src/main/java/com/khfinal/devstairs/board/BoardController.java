@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.khfinal.devstairs.board.biz.BoardBiz;
+import com.khfinal.devstairs.board.biz.BoardReplyBiz;
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.board.dto.BoardReplyDto;
 import com.khfinal.devstairs.board.dto.CategoryDto;
 import com.khfinal.devstairs.user.dto.UserDto;
 
@@ -22,8 +24,7 @@ public class BoardController {
 	
 	@Autowired
 	private BoardBiz biz;
-	//@Autowired
-	//private BoardReplyBiz brReplybiz;
+
 	@RequestMapping("/boardlist.do")
 	public String list(Model model, HttpSession session, int b_teamcode) {
 		logger.info("boardlist");
@@ -73,10 +74,19 @@ public class BoardController {
 	 
 	
 	@RequestMapping("/boarddetail.do")
-	public String detail(Model model, int b_no) {
+	public String detail(Model model, HttpSession session ,int b_no) {
 		logger.info("boarddetail");
 		
+		UserDto dto = (UserDto) session.getAttribute("login");
+		String b_userid = dto.getUserid();
+		
+		
+		model.addAttribute("b_userid", b_userid);
 		model.addAttribute("dto", biz.selectOne(b_no));
+		
+		
+		model.addAttribute("reply", brReplybiz.ReplyList(b_no));
+		
 		
 		return "boarddetail";
 		
@@ -111,22 +121,32 @@ public class BoardController {
 	}
 	
 	
-//	@RequestMapping("/updateform.do")
-//	public String updateForm() {
-//		//logger.info("updateform");
-//		
-//		return null;
-//		
-//	}
-//	
-//	@RequestMapping("/boardupdate.do")
-//	public String update() {
-//		//logger.info("boardupdate");
-//		
-//		return null;
-//		
-//	}
-//	
+	@RequestMapping("/updateform.do")
+	public String updateForm(Model model, int b_no) {
+		logger.info("updateform");
+		
+		model.addAttribute("dto", biz.selectOne(b_no));
+		
+		return "boardupdate";
+		
+	}
+	
+	@RequestMapping("/boardupdate.do")
+	public String update(BoardDto dto) {
+		logger.info("boardupdate");
+		
+		int res = biz.update(dto);
+		
+		if(res > 0) {
+			return "redirect:boardlist.do?b_teamcode=" + dto.getB_teamcode();
+		} else {
+			return "redriect:boarddetail.do?b_no=" + dto.getB_no();
+		}
+		
+		
+		
+	}
+	
 	@RequestMapping("/boarddelete.do")
 	public String delete(int b_no, int b_teamcode) {
 		logger.info("boarddetail");
@@ -142,5 +162,44 @@ public class BoardController {
 		
 		
 	}
+	@Autowired
+	private BoardReplyBiz brReplybiz;
+
+	@RequestMapping("/replywrite")
+	public String ReplyWrite(BoardReplyDto dto) {
+		System.out.println("요청 넘어왔다다 : " + dto.getBr_no() + "/ " + dto.getBr_userid() + " / " + dto.getBr_content());
+		brReplybiz.ReplyWrite(dto);
+
+		return "redirect:boarddetail.do?b_no=" + dto.getBr_no();
+		/*
+		 * return "redirect:boarddetail.do?b_no=" + dto.getBr_no();
+		 */
+	}
+
+	/*
+	 * @RequestMapping("/replyupdate") public String ReplyUpdate(BoardReplyDto dto)
+	 * { brReplybiz.ReplyUpdate(dto);
+	 * 
+	 * return "redirect:detail.do?b_no=" + dto.getBr_no(); }
+	 */
+
+	@RequestMapping("/replyupdate")
+	public String ReplyUpdate(BoardReplyDto dto) {
+		System.out.println("index : " + dto.getBr_index() + " / content : " + dto.getBr_content());
+		brReplybiz.ReplyUpdate(dto);
+
+		return "redirect:boarddetail.do?b_no=" + dto.getBr_no();
+		/*
+		 * return "redirect:boarddetail.do?b_no=" + dto.getBr_no();
+		 */
+	}
+
+	@RequestMapping("/replydelete")
+	public String replydelete(BoardReplyDto dto, int b_no) {
+		brReplybiz.ReplyDelete(dto);
+
+		return "redirect:boarddetail.do?b_no=" + b_no;
+	}
+
 
 }
