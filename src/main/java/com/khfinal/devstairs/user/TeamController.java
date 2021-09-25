@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,11 +70,11 @@ public class TeamController {
 	}
 	
 	@RequestMapping(value= "/makeWorkspace.do")
-	public String makeWorkspace(TeamCodeDto dto,HttpSession session,Model model,@RequestParam(value="adduserid") String userid) {
+	public String makeWorkspace(TeamCodeDto dto,HttpSession session,Model model,@RequestParam(value="adduserid" ,required=false) String userid) {
 		System.out.println("팀이름 잘넘어왔나 : " +dto.getTeamname());
 		System.out.println("유저아이디 넘어온거 확인 : " + userid);
 		String[] ids = null;
-		if(userid.length()>25) {
+		if(userid!=null && userid.length()>25) {
 			ids = userid.split(",");
 			System.out.println(ids[0]);
 		}
@@ -98,12 +99,15 @@ public class TeamController {
 						}
 					}
 				}else {
-					InviteDto idto = new InviteDto(userid,tcDto.getTeamcode());
-					int res3 = teambiz.inviteUser(idto);
-					if(res3==0) {
-						System.out.println("팀원초대 실패");
-					}else {
-						System.out.println("팀원초대 성공!!!!!!!!!!!!!!");
+					if(userid!=null) {
+						
+						InviteDto idto = new InviteDto(userid,tcDto.getTeamcode());
+						int res3 = teambiz.inviteUser(idto);
+						if(res3==0) {
+							System.out.println("팀원초대 실패");
+						}else {
+							System.out.println("팀원초대 성공!!!!!!!!!!!!!!");
+						}
 					}
 				}
 				return "redirect:start.do";
@@ -160,8 +164,40 @@ public class TeamController {
 		return map;
 	}
 	
+	@RequestMapping(value="/teamUserDel.do",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> teamuserDel(@RequestBody TeamDto dto){
+		Map<String,Boolean> map = new HashMap<String, Boolean>();
+		boolean check = false;
+		System.out.println(dto.getUserid() + " / " + dto.getTeamcode());
+		
+		int res = teambiz.teamUserDel(dto.getUserid(), dto.getTeamcode());
+		if(res>0) {
+			check= true;
+		}
+		
+		map.put("check", check);
+		
+		
+		return map;
+	}
 	
-	
+	@RequestMapping(value="/workspaceDelete.do",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> workspaceDel(int teamcode){
+		Map<String,Boolean> map = new HashMap<String, Boolean>();
+		boolean check = false;
+		
+		int res = teambiz.workspaceDel(teamcode);
+		if(res>0) {
+			check = true;
+		}
+		map.put("check", check);
+		
+		return map;
+		
+		
+	}
 	
 	
 }

@@ -150,14 +150,15 @@
 	<div>
 		<form action = "replywrite.do" method = "post">
 		<input type = "hidden" name = "br_no" value = "${dto.b_no }">
-			<input type = "text" name = "br_userid" placeholder="작성자">
+		<input type = "hidden" name = "br_teamcode" value = "${dto.b_teamcode }">
+			<input type = "text" name = "br_userid" value ="${dto.b_userid }">
 			<br>
 			<div>
 				<textarea rows = "5" cols = "50" id = "br_content" name = "br_content"></textarea>
 				<span id = "main_content_cnt"></span>
 			</div>
 			
-			 <input type = "submit" value = "등록">
+			  <input type = "submit" value = "등록"> 
 			
 		</form>
 		

@@ -3,10 +3,12 @@ package com.khfinal.devstairs.board.biz;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.khfinal.devstairs.board.dao.BoardReplyDao;
 import com.khfinal.devstairs.board.dto.BoardReplyDto;
 
+@Service
 public class BoardReplyBizImpl implements BoardReplyBiz {
 
 	@Autowired

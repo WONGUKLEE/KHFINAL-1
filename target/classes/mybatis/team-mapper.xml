@@ -47,4 +47,11 @@
   		DELETE FROM INVITE
   		WHERE USERID=#{userid} AND TEAMCODE=#{teamcode}
   	</delete>
+  	<delete id="teamUserDel">
+  		DELETE FROM TEAM
+  		WHERE USERID=#{userid} AND TEAMCODE=#{teamcode}
+  	</delete>
+  	<delete id="workspaceDel" parameterType="int">
+  		DELETE FROM TEAMCODE WHERE TEAMCODE =#{teamcode}
+  	</delete>
   </mapper>
