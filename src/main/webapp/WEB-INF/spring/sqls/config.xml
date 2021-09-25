@@ -9,8 +9,10 @@
   		<typeAlias type="com.khfinal.devstairs.user.dto.TeamDto" alias="teamDto"/>
   		<typeAlias type="com.khfinal.devstairs.board.dto.BoardDto" alias="boardDto"/>
   		<typeAlias type="com.khfinal.devstairs.board.dto.BoardReplyDto" alias="boardReplyDto"/>
+  		<typeAlias type="com.khfinal.devstairs.board.dto.CategoryDto" alias="categoryDto"/>
   		<typeAlias type="com.khfinal.devstairs.user.dto.InviteDto" alias="inviteDto"/>
   		<typeAlias type="com.khfinal.devstairs.user.dto.InviteTeamDto" alias="inviteTeamDto"/>
+  		
   	</typeAliases>
   	<mappers>
   		<mapper resource="/mybatis/user-mapper.xml"/>

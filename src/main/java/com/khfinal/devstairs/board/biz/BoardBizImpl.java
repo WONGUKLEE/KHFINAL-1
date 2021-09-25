@@ -26,6 +26,13 @@ public class BoardBizImpl implements BoardBiz{
 		return dao.myList(b_userid, b_teamcode);
 		
 	}
+	
+	@Override
+	public List<BoardDto> CategoryList(int c_no, String b_userid, int b_teamcode) {
+		
+		return dao.CategoryList(c_no, b_userid, b_teamcode);
+	}
+
 
 	@Override
 	public BoardDto selectOne(int b_no) {
@@ -51,8 +58,11 @@ public class BoardBizImpl implements BoardBiz{
 		return dao.delete(b_no);
 	}
 
+	
+}
+
 
 
 
 	
-}
+
