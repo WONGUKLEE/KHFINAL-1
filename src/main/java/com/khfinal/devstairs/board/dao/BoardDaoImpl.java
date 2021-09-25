@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.board.dto.CategoryDto;
 import com.khfinal.devstairs.user.dto.TeamDto;
 
 @Repository
@@ -52,11 +53,12 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardDto> meetingList(BoardDto dto) {
+	public List<BoardDto> CategoryList(int c_no, String b_userid, int b_teamcode) {
 		List<BoardDto> list = new ArrayList<BoardDto>();
 		
+		CategoryDto dto = new CategoryDto(c_no,b_userid,b_teamcode);
 		try {
-			list = sqlSession.selectList(NAMESPACE + "writetype", dto);
+			list = sqlSession.selectList(NAMESPACE + "writetype", dto );
 			
 		} catch (Exception e) {
 			System.out.println("[error] meetingList");
@@ -66,36 +68,7 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
-	@Override
-	public List<BoardDto> codeList(BoardDto dto) {
-		List<BoardDto> list =  new ArrayList<BoardDto>();
-		
-		try {
-			list = sqlSession.selectList(NAMESPACE + "writetype", dto);
-			
-		} catch (Exception e) {
-			System.out.println("[error] codeList");
-			e.printStackTrace();
-		}
-		
 
-		return list;
-	}
-
-	@Override
-	public List<BoardDto> etcList(BoardDto dto) {
-		List<BoardDto> list = new ArrayList<BoardDto>();
-		
-		try {
-			list = sqlSession.selectList(NAMESPACE + "writetype", dto);
-			
-		} catch (Exception e) {
-			System.out.println("[error] etcList");
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
 
 	@Override
 	public BoardDto selectOne(int b_no) {

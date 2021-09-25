@@ -1,5 +1,6 @@
 package com.khfinal.devstairs.board;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.khfinal.devstairs.board.biz.BoardBiz;
 import com.khfinal.devstairs.board.dto.BoardDto;
+import com.khfinal.devstairs.board.dto.CategoryDto;
 import com.khfinal.devstairs.user.dto.UserDto;
 
 @Controller
@@ -28,16 +30,47 @@ public class BoardController {
 		
 		UserDto dto = (UserDto) session.getAttribute("login");
 		String b_userid = dto.getUserid();
+	
 		
 		model.addAttribute("b_userid", b_userid);
 		model.addAttribute("b_teamcode", b_teamcode);
 		model.addAttribute("list", biz.selectList(b_teamcode));
 		System.out.println(biz.selectList(b_teamcode).get(0).getB_title());
 		model.addAttribute("mylist", biz.myList(b_userid, b_teamcode));
-
+		
+	
+		
+		 
 		return "workspace-board";
 		
 	}
+	
+	@RequestMapping("/categorylist.do")
+	public String categorylist(Model model, HttpSession session, int b_teamcode, int c_no) {
+		logger.info("boardlist");
+		
+		UserDto dto = (UserDto) session.getAttribute("login");
+		String b_userid = dto.getUserid();
+		
+		
+		
+		model.addAttribute("b_userid", b_userid);
+		model.addAttribute("b_teamcode", b_teamcode);
+		//model.addAttribute("list", biz.selectList(b_teamcode));
+		//System.out.println(biz.selectList(b_teamcode).get(0).getB_title());
+		
+	
+		
+		 model.addAttribute("c_no", c_no); 
+		 System.out.println(c_no);
+		 model.addAttribute("categorylist", biz.CategoryList(c_no, b_userid, b_teamcode));
+		 
+		 return "workspace-board";
+		
+	
+	
+	}
+	 
 	
 	@RequestMapping("/boarddetail.do")
 	public String detail(Model model, int b_no) {

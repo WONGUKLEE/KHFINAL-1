@@ -340,35 +340,20 @@
             <div class="content-view">
                 <div class="board-write">
                     <!-- <button class="btn-hover color-2"><i class="fas fa-pen" style="font-size: 1.5rem;"></i></button> -->
-<<<<<<< HEAD
-                    <button class="btn-hover color-4" onclick = "location.href='boardwrite.do'"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
-<%--                     <button class="btn-hover color-4" onclick = "location.href='boardwrite.do?b_teamcode=${list.b_teamcode}'"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button> --%>
-=======
+
+               
                     <button class="btn-hover color-4" onclick = "location.href='writeform.do?b_teamcode=${b_teamcode}'"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
->>>>>>> aeb5054da1b980e7f59b0193d949d290541e95df
+
                 </div>
                 <div class="boardlist">
                 	<c:choose>
-                		<c:when test="${empty list and empty mylist}">
+                		<c:when test="${empty list and empty mylist and empty categorylist}">
                 			<div>
                 				<div>게시글이 없습니다.</div>
                 			</div>
                 		</c:when>
                 		<c:otherwise>
-
                 			<c:forEach items = "${list}" var = "dto">
-<<<<<<< HEAD
-                				<div class="card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}&b_teamcode=${b_teamcode}'">
-			                        <img class="thumbnail" src="images/boardtest1.jpeg">
-			                        <div class="board-title">${dto.b_title }</div>
-			                        <div class="board-content">${dto.b_content }</div>
-			                        <div class="board-info">
-			                            <span>
-			                                <img src="images/profile.svg"
-			                            style="border-radius: 50%;" height="30px">
-			                            </span>
-			                            <span class="board-writer">${dto.b_userid }</span>
-=======
                 				<div class="list card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
 			                        <img class="thumbnail" src="images/boardtest1.jpeg">
 			                        <div class="board-title">${dto.b_title }</div>
@@ -379,13 +364,27 @@
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
 			                            <span class="board-writer">${b_userid}</span>
->>>>>>> aeb5054da1b980e7f59b0193d949d290541e95df
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
 		                    	</div>                			
                 			</c:forEach>
                 			<c:forEach items = "${mylist}" var = "dto">
                 				<div class = "mylist card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
+                					<img class="thumbnail" src="images/boardtest1.jpeg">
+			                        <div class="board-title">${dto.b_title }</div>
+			                        <div class="board-content">${dto.b_content}</div>
+			                        <div class="board-info">
+			                            <span>
+			                                <img src="images/profile.svg"
+			                            	style="border-radius: 50%;" height="30px">
+			                            </span>
+			                            <span class="board-writer">${b_userid}</span>
+			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
+			                        </div>
+                				</div>
+                			</c:forEach>
+                			<c:forEach items = "${categorylist}" var = "dto">
+                				<div class = "categorylist card card-2" onclick = "location.href='boarddetail.do?b_no=${dto.b_no}'">
                 					<img class="thumbnail" src="images/boardtest1.jpeg">
 			                        <div class="board-title">${dto.b_title }</div>
 			                        <div class="board-content">${dto.b_content}</div>
@@ -409,22 +408,129 @@
     
     <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    	$(function(){
-    		$(".mylist").hide();
+    	/* $(function(){
+   			$(".mylist").hide();
+   			$(".categorylist ").hide();
     	});
     	
    		function myList(){
    			$(".list").hide();
    			$(".mylist").show();
-   			
-   		};
+   			$(".categorylist").hide();
+   		}
    		
    		function List(){
    			$(".mylist").hide();
    			$(".list").show();
+   			$(".categorylist").hide();
+   		}
+   		
+		function type_meeting(){
+			location.href='categorylist.do?c_no='+1+'&b_teamcode='+${b_teamcode};
+			
+			$(".categorylist").show();
+			$(".mylist").hide();
+   			$(".list").hide();
+   		}
+   		function type_code(){
+   			location.href='categorylist.do?c_no='+2+'&b_teamcode='+${b_teamcode};
+   			$(".categorylist").show();
+			$(".mylist").hide();
+   			$(".list").hide();
+   			
    		}
     	
-    
+   		function type_etc(){
+   			location.href='categorylist.do?c_no='+3+'&b_teamcode='+${b_teamcode};
+
+   			$(".categorylist").show();
+			$(".mylist").hide();
+   			$(".list").hide();
+    	} */
+    	
+    	/*  $(function(){
+			$(".mylist").hide();
+			$(".categorylist ").hide();
+		});
+	 */
+		function type_meeting(){
+			$.ajax({
+				url:"boardlist.do",
+				type:'get',
+				dataType: 'json',
+				
+				success : function(msg){
+					if(msg.check==true){
+						alert('회의록');
+						location.href='boardlist.do';
+					}
+					
+				}
+			});	
+		}
+		
+		function type_code(){
+			$.ajax({
+				url:"boardlist.do",
+				type:'get',
+				dataType: 'json',
+				success:function(msg1){
+					if(msg1.check==true){
+						alert('코드리뷰');
+						location.href='boardlist.do';
+					}
+				}
+				
+			});
+			
+		}
+		function type_etc(){
+			$.ajax({
+				url:"boardlist.do",
+				type:'get',
+				dataType: 'json',
+				success:function(msg1){
+					if(msg1.check==true){
+						alert('코드리뷰');
+						location.href='boardlist.do';
+					}
+				}
+				
+			});
+			
+			
+		}
+		
+		function List(){
+			$(".mylist").hide();
+			$(".list").show();
+			$(".categorylist").hide();
+		}
+		
+	function type_meeting(){
+		location.href='categorylist.do?c_no='+1+'&b_teamcode='+${b_teamcode};
+		
+		$(".categorylist").show();
+		$(".mylist").hide();
+			$(".list").hide();
+		}
+		function type_code(){
+			location.href='categorylist.do?c_no='+2+'&b_teamcode='+${b_teamcode};
+			$(".categorylist").show();
+		$(".mylist").hide();
+			$(".list").hide();
+			
+		}
+	
+		function type_etc(){
+			location.href='categorylist.do?c_no='+3+'&b_teamcode='+${b_teamcode};
+
+			$(".categorylist").show();
+		$(".mylist").hide();
+			$(".list").hide();
+	} 
+   		
+    	
     </script>
     
     <script>

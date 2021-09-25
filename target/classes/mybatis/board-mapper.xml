@@ -24,10 +24,10 @@
 	  	
     </select>
  	
- 	<select id = "writetype" resultType = "boardDto">
+ 	<select id = "writetype" parameterType ="categoryDto" resultType = "boardDto">
 	  	SELECT *
 	  	FROM BOARD
-	  	WHERE C_NO = #{c_no}
+	  	WHERE C_NO = #{c_no} AND B_USERID=#{b_userid} AND B_TEAMCODE =#{b_teamcode} 
 	  	ORDER BY B_NO DESC
 	  	
  	</select>
@@ -35,7 +35,7 @@
  	<select id = "selectone" parameterType = "int" resultType = "boardDto">
  		SELECT *
  		FROM BOARD
- 		WHERE B_NO = #{b_no} and B_TEAMCODE=#{b_teamcode}
+ 		WHERE B_NO = #{b_no} 
  		
  	</select>
  	 	
