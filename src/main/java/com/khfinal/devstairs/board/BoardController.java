@@ -36,7 +36,6 @@ public class BoardController {
 		model.addAttribute("b_userid", b_userid);
 		model.addAttribute("b_teamcode", b_teamcode);
 		model.addAttribute("list", biz.selectList(b_teamcode));
-		System.out.println(biz.selectList(b_teamcode).get(0).getB_title());
 		model.addAttribute("mylist", biz.myList(b_userid, b_teamcode));
 		
 	
