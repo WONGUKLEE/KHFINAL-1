@@ -12,10 +12,12 @@ public class BoardReplyDto {
 	private int br_teamcode;
 	private String br_content;
 	private Date br_date;
+	
 	public BoardReplyDto() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
+	
 	public BoardReplyDto(int br_index, int br_no, String br_userid, int br_teamcode, String br_content, Date br_date) {
 		super();
 		this.br_index = br_index;
@@ -25,6 +27,7 @@ public class BoardReplyDto {
 		this.br_content = br_content;
 		this.br_date = br_date;
 	}
+	
 	public int getBr_index() {
 		return br_index;
 	}

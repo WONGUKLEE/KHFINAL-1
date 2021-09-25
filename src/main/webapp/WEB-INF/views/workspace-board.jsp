@@ -339,7 +339,6 @@
             </div>
             <div class="content-view">
                 <div class="board-write">
-                    <!-- <button class="btn-hover color-2"><i class="fas fa-pen" style="font-size: 1.5rem;"></i></button> -->
                     <button class="btn-hover color-4" onclick = "location.href='writeform.do?b_teamcode=${b_teamcode}'"><i class="fas fa-pen"style="font-size: 1.5rem;"></i></button>
                 </div>
                 <div class="boardlist">
@@ -361,7 +360,7 @@
 			                                <img src="images/profile.svg"
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
-			                            <span class="board-writer">${b_userid}</span>
+			                            <span class="board-writer">${dto.b_userid}</span>
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
 		                    	</div>                			
@@ -376,7 +375,7 @@
 			                                <img src="images/profile.svg"
 			                            	style="border-radius: 50%;" height="30px">
 			                            </span>
-			                            <span class="board-writer">${b_userid}</span>
+			                            <span class="board-writer">${dto.b_userid}</span>
 			                            <span class="board-star"><i class="fas fa-star" style="font-size: 17px; color:rgb(138, 138, 138);"></i></span>
 			                        </div>
                 				</div>

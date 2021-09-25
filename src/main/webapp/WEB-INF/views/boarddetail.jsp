@@ -116,27 +116,24 @@
 		</div>
 		
 		<div class = ${dto.b_no }>
-			<input type = "button" value = "수정" onclick = "location.href='updateform.do?b_no=${dto.b_no}'">
-			<input type = "button" value = "삭제" class = "board_delete">
+			<c:if test="${ b_userid == dto.b_userid}">
+				<input type = "button" value = "수정" onclick = "location.href='updateform.do?b_no=${dto.b_no}'">
+				<input type = "button" value = "삭제" class = "board_delete">
+			</c:if>
 			<input type = "button" value = "목록" onclick = "location.href='boardlist.do?b_teamcode=${dto.b_teamcode}'">
 		</div>
 	</div>
 	
-	
-	
-	
-	<script>
 
+	<script>
+	
 		$('.board_delete').click(function(){
 			
 			var b_no = $(this).parent().attr('class');
 			var b_teamcode = $(this).parent().parent().attr('class');
 			
-			alert(b_no);
-			alert(b_teamcode);
-			
 			if(confirm("해당한 글과 댓글이 삭제되는데 정말로 삭제하시겠습니까?")){
-				location.href='boarddelete.do?b_no=' + b_no + "&b_teamcode=" + b_teamcode;
+				location.href = "boarddelete.do?b_no=" + b_no + "&b_teamcode=" + b_teamcode;
 				
 			} else {
 				alert("삭제 취소를 하셨습니다.");
