@@ -62,4 +62,7 @@ public class UserBiz {
 	public int secession(String userid) {
 		return dao.secession(userid);
 	}
+	public int pwUpdate(UserDto dto) {
+		return dao.pwUpdate(dto);
+	}
 }

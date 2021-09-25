@@ -122,7 +122,7 @@
     		
     	});
     		function addUser(data){
-    			$("#adduserList").append(data+" ");
+    			$("#adduserList").append(data+"  ");
     			$("#table").append("<input type='hidden' value='"+data+"' name='adduserid'>");
     		}
     </script>

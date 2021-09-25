@@ -45,6 +45,9 @@
   	<update id="adminUpdate" parameterType="hashmap">
   		UPDATE TEAMCODE SET ADMIN=#{newname} WHERE ADMIN=#{pastname}
   	</update>
+  	<update id="pwUpdate" parameterType="userDto">
+  		UPDATE USERTB SET USERPW=#{userpw} WHERE USERID=#{userid}
+  	</update>
   	
   	<!-- testdelete : 테스트유저 회원가입 실패시 삭제-->
   	<delete id="testdelete" parameterType="userDto">
